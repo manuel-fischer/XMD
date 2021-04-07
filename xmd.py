@@ -1,6 +1,7 @@
 from collections import namedtuple
 import string
 import os
+import sys
 
 Entity = namedtuple("Entity", """
     type
@@ -140,11 +141,11 @@ def write_file(fname, s):
         f.write(s)
 
 
-cwd = "test"
+cwd = sys.argv[1]
 
 
 table_ofile = os.path.join(cwd,"doc","table.md")
-files = ["main.xmd"]
+files = os.listdir(os.path.join(cwd, "xdoc"))
 
 for i, f in enumerate(files):
     xmd_ifile = os.path.join(cwd,"xdoc",f)
