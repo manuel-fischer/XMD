@@ -56,12 +56,12 @@ def process_xmd(xmd):
                         tag = tokens[0]
                         if tag == "param":
                             if e_state == S_PRE:
-                                md += "## Parameters\n"
+                                md += "### Parameters\n"
                                 e_state = S_PARAMS
                             elif e_state != S_PARAMS:
                                 raise Exception("Did not expect parameter here")
                             
-                            md += f"### `{tokens[1]}`\n"
+                            md += f"#### `{tokens[1]}`\n"
                             md += join_tokens(tokens[2:]) + "\n"
                         elif tag == "return":
                             if e_state < S_RETURN:
@@ -69,7 +69,7 @@ def process_xmd(xmd):
                             else:
                                 raise Exception("Did not expect return here")
                             
-                            md += f"## Return value\n"
+                            md += f"### Return value\n"
                             md += join_tokens(tokens[1:]) + "\n"
                         else:
                             #TODO
@@ -94,16 +94,34 @@ def process_xmd(xmd):
                     current_entity = Entity(entity_type, signature, display, anchor)
                     lst_entities.append(current_entity)
                     md += "\n---\n\n"
-                    md += f"# {display}\n"
+                    md += f"## {display}\n"
         except:
             print(f"Error in line {i+1}")
             raise
 
     return md, lst_entities
 
+direction_str = {
+    "left":  "&#8592;",
+    "up":    "&#8593;",
+    "right": "&#8594;",
+}
+
+def generate_link(direction, file):
+    name = os.path.splitext(file)[0]
+    return f"[{direction_str[direction]} {name}]({file})"
+    
+
+def generate_browse(up, files, i):
+    return (generate_link("left", files[i-1]) if i != 0 else "") \
+         + (generate_link("up", up)) \
+         + (generate_link("right", files[i+1]) if i != len(files)-1 else "") \
+         + "\n"
+
+
 def generate_table(lst_entities, path="", i0=0):
     md = ""
-    md += "# Overview\n"
+    md += "## Overview\n"
     for i, e in enumerate(lst_entities):
         md += f"{i+i0}. [{e.display}]({path}#{e.anchor})\n"
     return md
@@ -124,21 +142,30 @@ def write_file(fname, s):
 
 
 cwd = "test"
+
+
+table_ofile = os.path.join(cwd,"doc","table.md")
 files = ["main.xmd"]
-for f in files:
-    xmd_file = os.path.join(cwd,"xdoc",f)
-    md_file = os.path.join(cwd,"doc",os.path.splitext(f)[0]+".md")
-    xmd = read_file(xmd_file)
+
+for i, f in enumerate(files):
+    xmd_ifile = os.path.join(cwd,"xdoc",f)
+    md_ofile = os.path.join(cwd,"doc",os.path.splitext(f)[0]+".md")
+    xmd = read_file(xmd_ifile)
     md, lst_entities = process_xmd(xmd)
-    write_file(md_file, generate_table(lst_entities) + md)
+
+    md = generate_browse("table.md", files, i) \
+       + f"# {os.path.splitext(f)[0]}\n" \
+       + generate_table(lst_entities) \
+       + md
+    write_file(md_ofile, md)
 
 # file table
 md = ""
-md += "# Files\n"
+md += "## Files\n"
 for i, f in enumerate(files):
     name = os.path.splitext(f)[0]
     md_link = os.path.join(os.path.splitext(f)[0]+".md")
     md += f"{i}. [{name}]({md_link})\n"
 
 
-write_file(os.path.join(cwd,"doc","table.md"), md)
+write_file(table_ofile, md)
