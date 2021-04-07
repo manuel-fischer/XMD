@@ -1,0 +1,18 @@
+@class Entity
+	A named tuple containing information about the entities in the source code
+	
+	@param type The type of the entity
+	@param signature The signature/declaration in the source code
+	@param display The displayed title of the entity
+	@param anchor The anchor in the markdown files that identifies the entity
+	
+@const INDENT_WIDTH
+	The expected indent (width in spaces) of the text inside an entity
+	
+@fn split_tokens(txt)
+	A function that splits source code into its tokens
+	
+	@param txt The source code that should be tokenized
+	
+	@return It returns a list of strings, each of them is a token.
+	

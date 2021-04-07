@@ -141,7 +141,7 @@ def write_file(fname, s):
         f.write(s)
 
 
-cwd = sys.argv[1]
+cwd = sys.argv[1] if len(sys.argv) == 2 else "."
 
 
 table_ofile = os.path.join(cwd,"doc","table.md")
