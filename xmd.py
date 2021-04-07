@@ -19,7 +19,7 @@ def join_tokens(tokens):
     return " ".join(tokens)
 
 
-ANCHOR_CHARS = set(" -" + string.ascii_letters + string.digits)
+ANCHOR_CHARS = set(" -_" + string.ascii_letters + string.digits)
 def to_md_anchor(txt):
     return "".join(
         '-' if c == ' ' else c.lower()
