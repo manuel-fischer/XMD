@@ -1,0 +1,10 @@
+@fn int greet(const char* str)
+
+	@param str the name, which should be greeted
+	@return always returns 42
+	
+	
+@fn int main()
+
+	Main procedure that greets the world.
+	
