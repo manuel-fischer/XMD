@@ -61,8 +61,7 @@ def process_xmd(xmd):
                             elif e_state != S_PARAMS:
                                 raise Exception("Did not expect parameter here")
                             
-                            md += f"#### `{tokens[1]}`\n"
-                            md += join_tokens(tokens[2:]) + "\n"
+                            md += f"**`{tokens[1]}`** &#8213; {join_tokens(tokens[2:])}\n"
                         elif tag == "return":
                             if e_state < S_RETURN:
                                 e_state = S_RETURN
@@ -88,7 +87,7 @@ def process_xmd(xmd):
                     tokens = split_tokens(l)
                     entity_type = tokens[0]
                     signature = join_tokens(tokens[1:])
-                    display = signature # TODO
+                    display = f"`{signature}`" # TODO
                     anchor = to_md_anchor(display)
 
                     current_entity = Entity(entity_type, signature, display, anchor)
@@ -154,6 +153,7 @@ for i, f in enumerate(files):
     md, lst_entities = process_xmd(xmd)
 
     md = generate_browse("table.md", files, i) \
+       + "***\n\n" \
        + f"# {os.path.splitext(f)[0]}\n" \
        + generate_table(lst_entities) \
        + md
