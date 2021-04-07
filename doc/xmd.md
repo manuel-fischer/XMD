@@ -4,8 +4,8 @@
 # xmd
 ## Overview
 0. [`Entity`](#entity)
-1. [`INDENT_WIDTH`](#indentwidth)
-2. [`split_tokens(txt)`](#splittokenstxt)
+1. [`INDENT_WIDTH`](#indent_width)
+2. [`split_tokens(txt)`](#split_tokenstxt)
 
 ---
 
