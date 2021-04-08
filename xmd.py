@@ -287,8 +287,8 @@ def xmd2md(xmd_entity, parent_file, files, file_index, depth=999, section_depth=
     subfiles = []
     md = ""
     md += generate_browse(parent_file, files, file_index)
-    md += section_depth*"#" + f" `{xmd_entity.display}`\n"
     md += "***\n\n"
+    md += section_depth*"#" + f" `{xmd_entity.display}`\n"
     for sect in SECTION_ORDER:
         if sect in ENTITY_WORDS:
             s_childs = [c for c in xmd_entity.childs if c.type == sect]
@@ -352,122 +352,6 @@ def xmd2md(xmd_entity, parent_file, files, file_index, depth=999, section_depth=
 
     subfiles += [(filename, xmd_entity.display, md)]
     return subfiles
-
-"""
-def process_xmd__(xmd_src):
-    entity = parse_xmd(
-        xmd_src.split("\n"),
-        Entity(
-            type = "file",
-            category = "",
-            brief = "",
-            display = "???",
-            sections = {},
-            childs = []
-        )
-    )
-
-    md_files = xmd2md(entity, 0)
-    assert len(md_files) == 1
-    md = md_files["???"]
-    return (md, entity.childs)
-
-# return (md, lst_entities)
-def process_xmd_(xmd_src):
-    xmd = xmd_src
-    md = ""
-    lst_entities = []
-
-    S_PRE = 0
-    S_PARAMS = 1
-    S_ATTRS = 2
-    S_RETVAL = 3
-    S_RETURN = 4
-    S_POST = 5
-
-    SUB_ENTITIES = {
-        "param": (S_PARAMS, "Parameters"),
-        "attr":  (S_ATTRS,  "Attributes"),
-        "retval":(S_RETVAL, "Return Values"),
-    }
-
-    current_entity = None
-    e_state = 0
-
-    
-    for i, l in enumerate(xmd.split("\n")):
-        if l[:1] == '\t':
-            l = ' ' * INDENT_WIDTH + l[1:]
-        
-        try:
-            if current_entity is not None:
-                if l[:INDENT_WIDTH].strip() != "":
-                    current_entity = None
-                    e_state = 0
-                else:
-                    l = l[INDENT_WIDTH:]
-                    if l[:1] == "@":
-                        ll = l[1:]
-                        tokens = split_tokens(ll)
-                        tag = tokens[0].text
-                        if tag in SUB_ENTITIES:
-                            tag_state, section_title = SUB_ENTITIES[tag]
-
-                            section_title = correct_grammar(ENTITY_WORDS[tag].title, 2)
-                            if e_state != tag_state:
-                                md += f"### {section_title}\n"
-                                e_state = tag_state
-
-                            brief = ll[text_slice(tokens, 2)]
-                            
-                            md += f"**`{tokens[1].text}`** &#8213; {brief}  \n" # linebreak
-                        elif tag == "return":
-                            if e_state < S_RETURN:
-                                e_state = S_RETURN
-                            else:
-                                raise Exception("Did not expect return here")
-                            
-                            md += f"### Return Value\n"
-                            md += ll[text_slice(tokens, 1)] + "\n"
-                        else:
-                            #TODO
-                            raise Exception(f"Invalid tag {tag}")
-                    else:
-                        md += l + '\n'
-                    
-        
-            
-            if current_entity is None:
-                if not l.startswith("@"):
-                    # just markdown text
-                    md += l+"\n"
-
-                else:
-                    tokens = split_tokens(l)
-                    entity_type = tokens[0].text
-                    signature = l[text_slice(tokens, 1)]
-                    display = f"`{signature}`" # TODO
-                    anchor = to_md_anchor(display)
-
-                    current_entity = Entity(
-                        type=entity_type,
-                        section = None,
-                        brief = "",
-                        signature = signature,
-                        display = display,
-                        #anchor = anchor,
-                        sections = {},
-                        childs = []
-                    )
-                    lst_entities.append(current_entity)
-                    md += "\n---\n\n"
-                    md += f"## {display}\n"
-        except:
-            print(f"Error in line {i+1}")
-            raise
-
-    return md, lst_entities
-"""
 
 def read_file(fname):
     print(f"Reading {fname}")
