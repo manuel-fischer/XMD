@@ -288,33 +288,42 @@ def xmd2md(xmd_entity, parent_file, files, file_index, depth=999, section_depth=
             s_childs = [c for c in xmd_entity.childs if c.type == sect]
             s_childs = sorted(s_childs, key=lambda c: c.category or "")
 
-            s_files = [(f"{file_prefix}--{to_md_filename_part(c.display)}.md", c.display) for c in s_childs]
+            s_childs_exist = list(filter(entity_has_subfile, s_childs))
+
+            s_files = [(f"{file_prefix}--{to_md_filename_part(c.display)}.md", c.display) for c in s_childs_exist]
             
             if not s_childs: continue
             section_title = correct_grammar(ENTITY_WORDS[sect].title, len(s_childs))
             md += section_depth*"#" + "# " + section_title + "\n"
             
             cur_category = ""
-            for i, c in enumerate(s_childs):
+            i = 0
+            for c in s_childs:
                 if c.category != cur_category:
                     md += f"<small>**{c.category}**</small>  \n"
                     cur_category = c.category
-                
-                has_subfile = entity_has_subfile(c)
+
                 link = f"`{c.display}`"
-                kw = dict(parent_file = file, files = s_files, file_index = i)
-                if has_subfile:
+
+                if entity_has_subfile(c):
                     if depth <= 0:
-                        subfiles += xmd2md(c, **kw, depth=-1, section_depth=section_depth+2)
                         link = f"[{link}](#{to_md_anchor(c.display)})"
                     else:
-                        subfiles += xmd2md(c, **kw, depth=depth-1, section_depth=1)
-                        link = f"[{link}]({s_files[i][0]}#{to_md_anchor(c.display)})"
+                        link = f"[{link}]({s_files[i][0]})"
+                    i+=1
                     
                 md += f"**{link}**" # linebreak
                 if c.brief:
                     md += f" {LONG_LINE} {c.brief}"
                 md += "  \n" # two spaces -- linebreak
+                
+            for i, c in enumerate(s_childs_exist):
+                kw = dict(parent_file = file, files = s_files, file_index = i)
+                if depth <= 0:
+                    subfiles += xmd2md(c, **kw, depth=-1, section_depth=section_depth+2)
+                else:
+                    subfiles += xmd2md(c, **kw, depth=depth-1, section_depth=1)
+                
         else:
             sect_md = xmd_entity.sections.get(sect, "")
             if sect_md:
@@ -470,6 +479,9 @@ def write_file(fname, s):
     with open(fname, "wt") as f:
         f.write(s)
 
+def delete_file(fname):
+    print(f"Deleting {fname}")
+    os.remove(fname)
 
 cwd = sys.argv[1] if len(sys.argv) == 2 else "."
 
@@ -477,6 +489,9 @@ cwd = sys.argv[1] if len(sys.argv) == 2 else "."
 table_ofile = os.path.join(cwd,"doc","table.md")
 i_files = os.listdir(os.path.join(cwd, "xdoc"))
 o_files = [os.path.splitext(f)[0]+".md" for f in i_files]
+
+for f in os.listdir(os.path.join(cwd, "doc")):
+    delete_file(os.path.join(cwd, "doc", f))
 
 for i, f in enumerate(i_files):
     xmd_ifile = os.path.join(cwd,"xdoc",f)

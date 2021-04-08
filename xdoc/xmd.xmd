@@ -15,13 +15,13 @@
 	@attr childs A list containing all child entities of the entity
 	
 @const ENTITY_WORDS
-	A dictionary containing all entity types, their section title and their signature behavior.
+	@brief A dictionary containing all entity types, their section title and their signature behavior.
 @const SECTION_ORDER
-	A array containing all entity types and section names
+	@brief A array containing all entity types and section names
 	
 	
 @const[parsing] INDENT_WIDTH
-	The expected indent (width in spaces) of the text inside an entity
+	@brief The expected indent (width in spaces) of the text inside an entity
 	
 @class[parsing] Token
 	@brief A token with its position
@@ -44,6 +44,8 @@
 	@param end The first index of the token not in the sequence
 	
 @const ANCHOR_CHARS
+	@brief Characters in a markdown anchor
+	
 	These are the characters that are kept in the resulting link to a markdown section,
 	which is generated out of the title text itself.
 	Note that spaces are replaced by a hyphen later.
