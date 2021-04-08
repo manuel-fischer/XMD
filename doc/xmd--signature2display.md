@@ -1,4 +1,4 @@
-[&#8592; correct_grammar](xmd--correct_grammar.md) | [&#8593; xmd.md](xmd.md) | [&#8594; entity_has_subfile](xmd--entity_has_subfile.md)
+[&#8592; text_slice](xmd--text_slice.md) | [&#8593; xmd.md](xmd.md) | [&#8594; dedent](xmd--dedent.md)
 # `signature2display`
 **Synopsis**
 

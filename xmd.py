@@ -215,9 +215,9 @@ def parse_xmd(xmd_lines, proto, line_no=1):
                 else:
                     content = "\n".join([ll[text_slice(tokens, 1)]]+block)
                     if tag == "brief":
-                        brief = (brief + " " + content).lstrip()
+                        brief = (brief + " " + content).strip()
                     elif tag == "briefx":
-                        brief = (brief + " " + content).lstrip()
+                        brief = (brief + " " + content).strip()
                         sections["description"] += content+"\n"
                     elif tag in SPECIAL_SECTIONS:
                         try:             sections[tag] += content+"\n"

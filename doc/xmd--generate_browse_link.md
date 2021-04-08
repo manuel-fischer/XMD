@@ -1,4 +1,4 @@
-[&#8592; delete_file](xmd--delete_file.md) | [&#8593; xmd.md](xmd.md) | [&#8594; generate_browse](xmd--generate_browse.md)
+[&#8592; correct_grammar](xmd--correct_grammar.md) | [&#8593; xmd.md](xmd.md) | [&#8594; generate_browse](xmd--generate_browse.md)
 # `generate_browse_link`
 **Synopsis**
 

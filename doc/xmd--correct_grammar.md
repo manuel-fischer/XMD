@@ -1,4 +1,4 @@
-[&#8592; to_md_filename_part](xmd--to_md_filename_part.md) | [&#8593; xmd.md](xmd.md) | [&#8594; signature2display](xmd--signature2display.md)
+[&#8592; to_md_filename_part](xmd--to_md_filename_part.md) | [&#8593; xmd.md](xmd.md) | [&#8594; generate_browse_link](xmd--generate_browse_link.md)
 # `correct_grammar`
 **Synopsis**
 

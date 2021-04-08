@@ -1,7 +1,7 @@
 @const LANG
 	@brief The language that is used in generated markdown.
 
-@class Entity
+@class[structure] Entity
 	@brief Source code entity.
 	A named tuple containing information about the entities in the source code.
 	
@@ -55,26 +55,26 @@
 	@param index The first index of the token sequence.
 	@param end The first index of the token not in the sequence.
 	
-@const ANCHOR_CHARS
+@const[markdown] ANCHOR_CHARS
 	@brief Characters in a markdown anchor.
 	
 	These are the characters that are kept in the resulting link to a markdown section,
 	which is generated out of the title text itself.
 	Note that spaces are replaced by a hyphen later.
 	
-@fn to_md_anchor(txt)
+@fn[markdown] to_md_anchor(txt)
 	@brief Convert title to markdown anchor.
 	Converts the title of a section to the anchor, which can be used in a markdown link.
 	
 	@param txt A string containing the title text of the section to generate the anchor for, it should not contain any spaces.
 	@return A string that represents the anchor.
 	
-@fn to_md_filename_part(name)
+@fn[markdown] to_md_filename_part(name)
 	@briefx Convert file title to a filename.
 	@param name The file title.
 	@return The corresponding part of the filename.
 	
-@fn correct_grammar(string, amount)
+@fn[output] correct_grammar(string, amount)
 	@brief Adjusts the string to a given amount.
 	
 	Adjusts the string to the given amount, when the amount is one, all plural letters get removed.
@@ -84,12 +84,12 @@
 	@param amount The amount to adjust the string to.
 	@return The adjusted string.
 	
-@fn signature2display(signature)
+@fn[parsing] signature2display(signature)
 	@briefx Extracts the displayed identifier out of a signature.
 	@param signature The signature as a string.
 	@return the identifier.
 
-@fn entity_has_subfile(entity)
+@fn[structure] entity_has_subfile(entity)
 	@brief Checks if the entity has detailed content.
 	Checks if the entity has more detailed content than just the brief description.
 	@param entity The entity.

@@ -1,4 +1,4 @@
-[&#8592; Entity](xmd--entity.md) | [&#8593; xmd.md](xmd.md) | [&#8594; EntityType](xmd--entitytype.md)
+[&#8593; xmd.md](xmd.md) | [&#8594; Entity](xmd--entity.md)
 # `Token`
 
 A token with its position.
