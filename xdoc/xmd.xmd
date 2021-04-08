@@ -12,9 +12,7 @@
 			`@fn[Observers] get`
 	@attr brief The text that appears in overviews next to the name.
 	@attr display The displayed title of the entity.
-	@attr sections Special sections: synopsis, description, return.
-		The synopsis and description sections appear at the top.
-		The return section appears where retval appears.
+	@attr sections The contents of special sections. See SPECIAL_SECTIONS.
 	@attr childs A list containing all child entities of the entity.
 	
 @class[structure] EntityType
@@ -30,8 +28,10 @@
 	
 @const[structure] SPECIAL_SECTIONS
 	@briefx The names and their section heading of special sections as a dictionary.
-	
-	
+	Special sections: synopsis, description, return, example.
+			
+	The synopsis and description sections appear at the top.
+	The return section appears where retval appears.
 	
 @const[parsing] INDENT_WIDTH
 	@brief The expected indent (width in spaces) of the text inside an entity.

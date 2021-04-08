@@ -9,5 +9,5 @@ A named tuple containing information about the entities in the source code.
 **[`category`](xmd--entity--category.md)** &#8213; A user defined category.  
 **`brief`** &#8213; The text that appears in overviews next to the name.  
 **`display`** &#8213; The displayed title of the entity.  
-**[`sections`](xmd--entity--sections.md)** &#8213; Special sections: synopsis, description, return.  
+**`sections`** &#8213; The contents of special sections. See SPECIAL_SECTIONS.  
 **`childs`** &#8213; A list containing all child entities of the entity.  

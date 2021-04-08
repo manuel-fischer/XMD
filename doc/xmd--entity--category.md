@@ -1,4 +1,4 @@
-[&#8593; Entity](xmd--entity.md) | [&#8594; sections](xmd--entity--sections.md)
+[&#8593; Entity](xmd--entity.md)
 # `category`
 
 It is `None` if it does not belong to any category.
