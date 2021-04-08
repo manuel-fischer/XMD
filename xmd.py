@@ -63,6 +63,8 @@ SECTION_ORDER = """
     attr
 
     default
+    pre
+    post
     return
     retval
     sidefx
@@ -88,6 +90,8 @@ SPECIAL_SECTIONS = {
     "default": "# Default Value\n",
     "return": "# Return Value\n",
     "sidefx": "# Side Effects\n",
+    "pre":  "# Preconditions\n",
+    "post":  "# Postconditions\n",
     "todo": "# TODO\n",
     "see": "# See also\n",
     "description": "",

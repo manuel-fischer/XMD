@@ -25,6 +25,8 @@ tag = "@", (entity | command), signature, indented-block
 **`default`** &#8213; Specifies the default value of the entity  
 **[`todo`](xmd-format--todo.md)** &#8213; TODO-Tasks  
 **[`see`](xmd-format--see.md)** &#8213; See also  
+**`pre`** &#8213; Preconditions  
+**`post`** &#8213; Postconditions  
 ## Tags
 <small>**entities**</small>  
 **`file`** &#8213; File  
