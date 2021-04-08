@@ -102,6 +102,9 @@ def to_md_anchor(txt):
         if c in ANCHOR_CHARS
     )
 
+def to_md_filename_part(name):
+    return to_md_anchor(name)
+
 def correct_grammar(string, amount):
     if amount == 1:
         return string[:string.rfind("(")]
@@ -239,33 +242,68 @@ def parse_xmd(xmd_lines, proto, line_no=1):
     )
 
 
-def xmd2md(xmd_entity, depth=999, section_depth=1):
-    subfiles = {}
+DIRECTION_STR = {
+    "left":  "&#8592;",
+    "up":    "&#8593;",
+    "right": "&#8594;",
+}
+
+def generate_browse_link(direction, file):
+    assert type(file) == tuple
+    return f"[{DIRECTION_STR[direction]} {file[1]}]({file[0]})"
+    
+
+def generate_browse(parent, files, i):
+    return (generate_browse_link("left", files[i-1]) if i != 0 else "") + " " \
+         + (generate_browse_link("up", parent)) + " " \
+         + (generate_browse_link("right", files[i+1]) if i != len(files)-1 else "") \
+         + "\n"
+
+
+def generate_table(lst_entities, path="", i0=0):
     md = ""
+    md += "## Overview\n"
+    for i, e in enumerate(lst_entities):
+        md += f"{i+i0}. [{e.display}]({path}#{to_md_anchor(e.display)})\n"
+    return md
+
+
+def xmd2md(xmd_entity, parent_file, files, file_index, depth=999, section_depth=1):
+    file = files[file_index]
+    filename = file[0]
+    file_prefix = os.path.splitext(filename)[0]
+    
+    subfiles = []
+    md = ""
+    md += generate_browse(parent_file, files, file_index)
+    md += section_depth*"#" + f" `{xmd_entity.display}`\n"
     for sect in SECTION_ORDER:
         if sect in ENTITY_WORDS:
             s_childs = [c for c in xmd_entity.childs if c.type == sect]
             s_childs = sorted(s_childs, key=lambda c: c.category or "")
+
+            s_files = [(f"{file_prefix}--{to_md_filename_part(c.display)}.md", c.display) for c in s_childs]
             
             if not s_childs: continue
             section_title = correct_grammar(ENTITY_WORDS[sect].title, len(s_childs))
-            md += section_depth*"#" + " " + section_title + "\n"
+            md += section_depth*"#" + "# " + section_title + "\n"
             
             cur_category = ""
-            for c in s_childs:
+            for i, c in enumerate(s_childs):
                 if c.category != cur_category:
                     md += f"<small>**{c.category}**</small>  \n"
                     cur_category = c.category
                 
                 has_subfile = entity_has_subfile(c)
                 link = f"`{c.display}`"
+                kw = dict(parent_file = file, files = s_files, file_index = i)
                 if has_subfile:
-                    if depth == 0:
-                        subfiles.update(xmd2md(c, 0, section_depth+2))
+                    if depth <= 0:
+                        subfiles += xmd2md(c, **kw, depth=-1, section_depth=section_depth+2)
                         link = f"[{link}](#{to_md_anchor(c.display)})"
                     else:
-                        subfiles.update(xmd2md(c, depth-1, 1))
-                        link = f"[{link}](#{to_md_anchor(c.display)})" # TODO
+                        subfiles += xmd2md(c, **kw, depth=depth-1, section_depth=1)
+                        link = f"[{link}]({s_files[i][0]}#{to_md_anchor(c.display)})"
                     
                 md += f"**{link}**" # linebreak
                 if c.brief:
@@ -275,26 +313,27 @@ def xmd2md(xmd_entity, depth=999, section_depth=1):
             sect_md = xmd_entity.sections.get(sect, "")
             if sect_md:
                 section_title = SPECIAL_SECTIONS[sect]
-                md += section_title.replace("#", section_depth*"#") + "\n"
+                md += section_title.replace("#", section_depth*"#"+"#") + "\n"
                 md += sect_md + "\n"
 
     if subfiles and depth == 0:
-        md += section_depth*"#" + " " + correct_grammar("Child(s)", len(subfiles)) + "\n"
+        md += section_depth*"#" + "# " + correct_grammar("Child(s)", len(subfiles)) + "\n"
         first = True
         for e_fn, e_md in subfiles.items():
             if first:
                 first = False
             else:
                 md += "***\n"
-            md += section_depth*"#" + f"# `{e_fn}`\n"
+            #md += section_depth*"#" + f"# `{e_fn}`\n"
             md += e_md
             
-        subfiles = {}
+        subfiles = []
 
-    subfiles[xmd_entity.display] = md
+    subfiles += [(filename, xmd_entity.display, md)]
     return subfiles
 
-def process_xmd(xmd_src):
+"""
+def process_xmd__(xmd_src):
     entity = parse_xmd(
         xmd_src.split("\n"),
         Entity(
@@ -407,31 +446,7 @@ def process_xmd_(xmd_src):
             raise
 
     return md, lst_entities
-
-direction_str = {
-    "left":  "&#8592;",
-    "up":    "&#8593;",
-    "right": "&#8594;",
-}
-
-def generate_link(direction, file):
-    name = os.path.splitext(file)[0]
-    return f"[{direction_str[direction]} {name}]({file})"
-    
-
-def generate_browse(up, files, i):
-    return (generate_link("left", files[i-1]) if i != 0 else "") \
-         + (generate_link("up", up)) \
-         + (generate_link("right", files[i+1]) if i != len(files)-1 else "") \
-         + "\n"
-
-
-def generate_table(lst_entities, path="", i0=0):
-    md = ""
-    md += "## Overview\n"
-    for i, e in enumerate(lst_entities):
-        md += f"{i+i0}. [{e.display}]({path}#{to_md_anchor(e.display)})\n"
-    return md
+"""
 
 def read_file(fname):
     print(f"Reading {fname}")
@@ -442,8 +457,10 @@ def read_file(fname):
 def write_file(fname, s):
     print(f"Writing {fname}")
     path = os.path.dirname(fname)
-    os.makedirs(path, exist_ok=True)
-    
+    if not os.path.isdir(path):
+        print(f"Create {path}")
+        os.makedirs(path, exist_ok=True)
+        
     with open(fname, "wt") as f:
         f.write(s)
 
@@ -452,8 +469,38 @@ cwd = sys.argv[1] if len(sys.argv) == 2 else "."
 
 
 table_ofile = os.path.join(cwd,"doc","table.md")
-files = os.listdir(os.path.join(cwd, "xdoc"))
+i_files = os.listdir(os.path.join(cwd, "xdoc"))
+o_files = [os.path.splitext(f)[0]+".md" for f in i_files]
 
+for i, f in enumerate(i_files):
+    xmd_ifile = os.path.join(cwd,"xdoc",f)
+    md_ofile = os.path.join(cwd,"doc",os.path.splitext(f)[0]+".md")
+    xmd_src = read_file(xmd_ifile)
+
+    entity = parse_xmd(
+        xmd_src.split("\n"),
+        Entity(
+            type = "file",  
+            category = "",
+            brief = "",
+            display = md_ofile,
+            sections = {},
+            childs = []
+        )
+    )
+
+    file_contents = xmd2md(
+        entity,
+        ("table.md", "table"),
+        [(f, f) for f in o_files],
+        i,
+        depth=999
+    )
+
+    for fn, display, md in file_contents:
+        write_file(os.path.join(cwd,"doc",fn), md)
+
+"""
 for i, f in enumerate(files):
     xmd_ifile = os.path.join(cwd,"xdoc",f)
     md_ofile = os.path.join(cwd,"doc",os.path.splitext(f)[0]+".md")
@@ -466,13 +513,14 @@ for i, f in enumerate(files):
        + generate_table(lst_entities) \
        + md
     write_file(md_ofile, md)
+"""
 
 # file table
 md = ""
 md += "## Files\n"
-for i, f in enumerate(files):
-    name = os.path.splitext(f)[0]
-    md_link = os.path.join(os.path.splitext(f)[0]+".md")
+for i, f in enumerate(o_files):
+    name = os.path.splitext(os.path.split(f)[-1])[0]
+    md_link = f
     md += f"{i}. [{name}]({md_link})\n"
 
 

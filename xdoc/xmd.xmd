@@ -91,7 +91,7 @@
 	@param xmd_lines A list of strings containing the lines of the xmd source
 	@return An `Entity` that contains the parsed contents
 	
-@fn xmd2md(xmd_entity, depth):
+@fn xmd2md(xmd_entity, depth)
 	Creates recursively the markdown text for the xmd_entity and its subentities.
 	
 	@param xmd_entity The `Entity` object
