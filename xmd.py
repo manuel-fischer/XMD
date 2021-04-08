@@ -241,6 +241,8 @@ def parse_xmd(xmd_lines, proto, line_no=1):
         childs
     )
 
+LONG_LINE = "&#8213;"
+SPLIT_LINE = "|"
 
 DIRECTION_STR = {
     "left":  "&#8592;",
@@ -248,16 +250,20 @@ DIRECTION_STR = {
     "right": "&#8594;",
 }
 
+def str_join_nonempty(join_string, l):
+    return join_string.join(e for e in l if e.strip())
+
 def generate_browse_link(direction, file):
     assert type(file) == tuple
     return f"[{DIRECTION_STR[direction]} {file[1]}]({file[0]})"
     
 
 def generate_browse(parent, files, i):
-    return (generate_browse_link("left", files[i-1]) if i != 0 else "") + " " \
-         + (generate_browse_link("up", parent)) + " " \
-         + (generate_browse_link("right", files[i+1]) if i != len(files)-1 else "") \
-         + "\n"
+    return str_join_nonempty(f" {SPLIT_LINE} ", [
+        (generate_browse_link("left", files[i-1]) if i != 0 else ""),
+        (generate_browse_link("up", parent)),
+        (generate_browse_link("right", files[i+1]) if i != len(files)-1 else "")
+    ]) + "\n"
 
 
 def generate_table(lst_entities, path="", i0=0):
@@ -307,7 +313,7 @@ def xmd2md(xmd_entity, parent_file, files, file_index, depth=999, section_depth=
                     
                 md += f"**{link}**" # linebreak
                 if c.brief:
-                    md += f" &#8213; {c.brief}"
+                    md += f" {LONG_LINE} {c.brief}"
                 md += "  \n" # two spaces -- linebreak
         else:
             sect_md = xmd_entity.sections.get(sect, "")

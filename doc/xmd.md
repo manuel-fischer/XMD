@@ -1,4 +1,4 @@
- [&#8593; table](table.md) 
+[&#8593; table](table.md)
 # `.\doc\xmd.md`
 ## Constants
 **[`ENTITY_WORDS`](xmd--entity_words.md#entity_words)**  

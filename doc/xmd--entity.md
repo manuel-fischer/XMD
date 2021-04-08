@@ -1,4 +1,4 @@
- [&#8593; xmd.md](xmd.md) [&#8594; Token](xmd--token.md)
+[&#8593; xmd.md](xmd.md) | [&#8594; Token](xmd--token.md)
 # `Entity`
 
 A named tuple containing information about the entities in the source code

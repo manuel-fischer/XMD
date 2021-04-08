@@ -1,4 +1,4 @@
-[&#8592; parse_group](xmd--parse_group.md) [&#8593; xmd.md](xmd.md) 
+[&#8592; parse_group](xmd--parse_group.md) | [&#8593; xmd.md](xmd.md)
 # `parse_xmd`
 **Synopsis**
 

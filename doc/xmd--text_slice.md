@@ -1,4 +1,4 @@
-[&#8592; split_tokens](xmd--split_tokens.md) [&#8593; xmd.md](xmd.md) [&#8594; dedent](xmd--dedent.md)
+[&#8592; split_tokens](xmd--split_tokens.md) | [&#8593; xmd.md](xmd.md) | [&#8594; dedent](xmd--dedent.md)
 # `text_slice`
 **Synopsis**
 

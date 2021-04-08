@@ -1,4 +1,4 @@
- [&#8593; xmd.md](xmd.md) [&#8594; correct_grammar](xmd--correct_grammar.md)
+[&#8593; xmd.md](xmd.md) | [&#8594; correct_grammar](xmd--correct_grammar.md)
 # `to_md_anchor`
 **Synopsis**
 

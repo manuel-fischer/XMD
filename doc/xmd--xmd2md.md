@@ -1,4 +1,4 @@
-[&#8592; correct_grammar](xmd--correct_grammar.md) [&#8593; xmd.md](xmd.md) [&#8594; process_xmd](xmd--process_xmd.md)
+[&#8592; correct_grammar](xmd--correct_grammar.md) | [&#8593; xmd.md](xmd.md) | [&#8594; process_xmd](xmd--process_xmd.md)
 # `xmd2md`
 **Synopsis**
 

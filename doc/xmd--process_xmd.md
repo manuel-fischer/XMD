@@ -1,4 +1,4 @@
-[&#8592; xmd2md](xmd--xmd2md.md) [&#8593; xmd.md](xmd.md) [&#8594; split_tokens](xmd--split_tokens.md)
+[&#8592; xmd2md](xmd--xmd2md.md) | [&#8593; xmd.md](xmd.md) | [&#8594; split_tokens](xmd--split_tokens.md)
 # `process_xmd`
 **Synopsis**
 

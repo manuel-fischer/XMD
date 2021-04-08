@@ -1,4 +1,4 @@
-[&#8592; to_md_anchor](xmd--to_md_anchor.md) [&#8593; xmd.md](xmd.md) [&#8594; xmd2md](xmd--xmd2md.md)
+[&#8592; to_md_anchor](xmd--to_md_anchor.md) | [&#8593; xmd.md](xmd.md) | [&#8594; xmd2md](xmd--xmd2md.md)
 # `correct_grammar`
 **Synopsis**
 
