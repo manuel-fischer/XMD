@@ -10,6 +10,6 @@ Creates slice for extracting the text over the specified range of tokens.
 
 
 ## Parameters
-**`tokens`** &#8213; The tokens  
-**`index`** &#8213; The first index of the token sequence  
-**`end`** &#8213; The first index of the token not in the sequence  
+**`tokens`** &#8213; The tokens.  
+**`index`** &#8213; The first index of the token sequence.  
+**`end`** &#8213; The first index of the token not in the sequence.  

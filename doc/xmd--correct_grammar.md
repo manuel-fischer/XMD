@@ -1,4 +1,4 @@
-[&#8592; to_md_anchor](xmd--to_md_anchor.md) | [&#8593; xmd.md](xmd.md) | [&#8594; xmd2md](xmd--xmd2md.md)
+[&#8592; to_md_filename_part](xmd--to_md_filename_part.md) | [&#8593; xmd.md](xmd.md) | [&#8594; signature2display](xmd--signature2display.md)
 # `correct_grammar`
 **Synopsis**
 
@@ -11,10 +11,10 @@ These are identified by "(...)" at the end of string. Otherwise, the parenthesis
 
 
 ## Parameters
-**`string`** &#8213; The string containing parenthesized plural form  
-**`amount`** &#8213; The amount to adjust the string to  
+**`string`** &#8213; The string containing parenthesized plural form.  
+**`amount`** &#8213; The amount to adjust the string to.  
 ## Return Value
 
-The adjusted string
+The adjusted string.
 
 

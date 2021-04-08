@@ -46,13 +46,12 @@ SECTION_ORDER = """
     def
     example
 """.split()
-#assert(len(ENTITY_WORDS) == len(ENTITY_ORDER))
 
 
 SPECIAL_SECTIONS = {
     "syn": "**Synopsis**\n", # if @syn(n), then multiple overloads could be written
-                       # if the syntax of a declaration is clear, the entity
-                       # itself can be introduced with the syn
+                             # if the syntax of a declaration is clear, the entity
+                             # itself can be introduced with the syn
     "return": "# Return Value\n",
     "description": "",
     "example":  "# Example",
@@ -95,6 +94,7 @@ def text_slice(tokens, index, end=None):
         return slice(first,last)
 
 ANCHOR_CHARS = set(" -_" + string.ascii_letters + string.digits)
+
 def to_md_anchor(txt):
     return "".join(
         '-' if c == ' ' else c.lower()
@@ -216,6 +216,9 @@ def parse_xmd(xmd_lines, proto, line_no=1):
                     content = "\n".join([ll[text_slice(tokens, 1)]]+block)
                     if tag == "brief":
                         brief = (brief + " " + content).lstrip()
+                    elif tag == "briefx":
+                        brief = (brief + " " + content).lstrip()
+                        sections["description"] += content+"\n"
                     elif tag in SPECIAL_SECTIONS:
                         try:             sections[tag] += content+"\n"
                         except KeyError: sections[tag]  = content+"\n"
@@ -248,6 +251,7 @@ DIRECTION_STR = {
     "left":  "&#8592;",
     "up":    "&#8593;",
     "right": "&#8594;",
+    "down":  "&#8595;",
 }
 
 def str_join_nonempty(join_string, l):
@@ -266,13 +270,14 @@ def generate_browse(parent, files, i):
     ]) + "\n"
 
 
+"""
 def generate_table(lst_entities, path="", i0=0):
     md = ""
     md += "## Overview\n"
     for i, e in enumerate(lst_entities):
         md += f"{i+i0}. [{e.display}]({path}#{to_md_anchor(e.display)})\n"
     return md
-
+"""
 
 def xmd2md(xmd_entity, parent_file, files, file_index, depth=999, section_depth=1):
     file = files[file_index]
@@ -487,7 +492,7 @@ cwd = sys.argv[1] if len(sys.argv) == 2 else "."
 
 
 table_ofile = os.path.join(cwd,"doc","table.md")
-i_files = os.listdir(os.path.join(cwd, "xdoc"))
+i_files = sorted(os.listdir(os.path.join(cwd, "xdoc")))
 o_files = [os.path.splitext(f)[0]+".md" for f in i_files]
 
 for f in os.listdir(os.path.join(cwd, "doc")):

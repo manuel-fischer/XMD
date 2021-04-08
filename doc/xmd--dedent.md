@@ -10,9 +10,9 @@ Tries to dedent a line.
 
 
 ## Parameter
-**`line`** &#8213; The line to be dedented  
+**`line`** &#8213; The line to be dedented.  
 ## Return Value
 
-If it succedes it returns the dedented line, otherwise `None`
+If it succedes it returns the dedented line, otherwise `None`.
 
 

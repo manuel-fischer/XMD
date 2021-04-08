@@ -1,4 +1,4 @@
-[&#8593; xmd.md](xmd.md) | [&#8594; correct_grammar](xmd--correct_grammar.md)
+[&#8593; xmd.md](xmd.md) | [&#8594; to_md_filename_part](xmd--to_md_filename_part.md)
 # `to_md_anchor`
 **Synopsis**
 
@@ -10,7 +10,7 @@ Converts the title of a section to the anchor, which can be used in a markdown l
 
 
 ## Parameter
-**`txt`** &#8213; A string containing the title text of the section to generate the anchor for, it should not contain any spaces  
+**`txt`** &#8213; A string containing the title text of the section to generate the anchor for, it should not contain any spaces.  
 ## Return Value
 
 A string that represents the anchor.
