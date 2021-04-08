@@ -148,7 +148,6 @@ def signature2display(signature):
     tokens = split_tokens(signature)
     if (i := first_group(tokens)) != None:
         return tokens[i-1].text
-    print(tokens)
     return tokens[0].text
 
 
@@ -394,12 +393,12 @@ def read_file(fname):
     return s
 
 def write_file(fname, s):
-    print(f"Writing {fname}")
     path = os.path.dirname(fname)
     if not os.path.isdir(path):
-        print(f"Create {path}")
+        print(f"Create {path} for {fname}")
         os.makedirs(path, exist_ok=True)
         
+    print(f"Writing {fname}")
     with open(fname, "wt") as f:
         f.write(s)
 

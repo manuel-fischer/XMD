@@ -22,6 +22,7 @@ tag = "@", (entity | command), signature, indented-block
 **`brief`** &#8213; The brief description of an entity, that is shown in the overview of the parent entity  
 **`briefx`** &#8213; Like `@brief` but also adds the text to the description of the entity.  
 **`disp`** &#8213; Sets the display name of the entity  
+**`default`** &#8213; Specifies the default value of the entity  
 ## Tags
 <small>**entities**</small>  
 **`file`** &#8213; File  
