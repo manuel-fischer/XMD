@@ -1,4 +1,4 @@
-[&#8593; table](table.md)
+[&#8592; XMD Format](xmd-format.md) | [&#8593; table](table.md)
 ***
 
 # `xmd.py`

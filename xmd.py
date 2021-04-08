@@ -17,6 +17,10 @@ EntityType = namedtuple("EntityType", "title inline_brief")
 
 X = EntityType
 ENTITY_WORDS = {# Title                  Has inline brief
+    "file":     X("File(s)",             True),
+    "module":   X("Module(s)",           True),
+    "namespace":X("Namespace(s)",        True),
+    
     "fn":       X("Function(s)",         False),
     "class":    X("Class(es)",           False),
     "struct":   X("Structure(s)",        False),
@@ -33,6 +37,7 @@ ENTITY_WORDS = {# Title                  Has inline brief
     # Entities that are not necessarily a physical part of source code
     # but more specific entities provided by the documented interface
     "cmd":      X("Command(s)",          False),
+    "tag":      X("Tag(s)",              True),
     "opt":      X("Option(s)",           False),
     "elem":     X("Element(s)",          True),
 }
@@ -46,7 +51,12 @@ SECTION_ORDER = """
 
     opt
     cmd
+    tag
     elem
+    
+    file
+    module
+    namespace
     
     const
     var

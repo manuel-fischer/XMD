@@ -1,0 +1,51 @@
+@disp XMD Format
+
+A `xmd` file consists of markdown text mixed with entities and other tags.
+
+## Syntax
+```
+file = {tag | markdown}
+markdown = ANYTHING
+tag = "@", (entity | command), signature, indented-block 
+```
+
+
+@tag[entities] file File
+@tag[entities] module Module
+@tag[entities] namespace Namespace
+@tag[entities] fn Function or method
+@tag[entities] class Class
+@tag[entities] struct Structures
+@tag[entities] type Types, type aliases
+@tag[entities] const Constant
+@tag[entities] var Variable
+@tag[entities] def Macro definition
+@tag[entities] param Parameter
+@tag[entities] attr Attribute
+@tag[entities] retval Named return value
+@tag[entities] cmd Command
+@tag[entities] tag Tag
+@tag[entities] opt Command line option or settings option
+@tag[entities] elem Element
+
+@cmd syn
+	@brief Synopsis.
+	Synopsis, allows to specify the synopsis for elements that have inline brief
+
+@cmd return
+	@brief Description about the returned value of a function
+	
+@cmd sidefx
+	@brief Description about the side effects of a function
+	
+@cmd example
+	@brief An example showing the usage of the entity
+	
+@cmd brief
+	@brief The brief description of an entity, that is shown in the overview of the parent entity
+	
+@cmd briefx
+	@brief Like `@brief` but also adds the text to the description of the entity.
+	
+@cmd disp
+	@brief Sets the display name of the entity

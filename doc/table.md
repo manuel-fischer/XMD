@@ -1,2 +1,3 @@
 ## Files
-0. [xmd.py](xmd.py.md)
+0. [XMD Format](xmd-format.md)
+1. [xmd.py](xmd.py.md)
