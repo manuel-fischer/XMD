@@ -88,6 +88,11 @@
 	@briefx Extracts the displayed identifier out of a signature.
 	@param signature The signature as a string.
 	@return the identifier.
+	@example
+		```python
+		>>> signature2display("int main(int argc, char* argv[])")
+		'main'
+		```
 
 @fn[structure] entity_has_subfile(entity)
 	@brief Checks if the entity has detailed content.

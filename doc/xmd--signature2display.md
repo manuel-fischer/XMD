@@ -14,4 +14,11 @@ Extracts the displayed identifier out of a signature.
 
 the identifier.
 
+## Example
+
+```python
+>>> signature2display("int main(int argc, char* argv[])")
+'main'
+```
+
 
