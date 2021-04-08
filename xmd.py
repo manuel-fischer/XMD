@@ -288,6 +288,7 @@ def xmd2md(xmd_entity, parent_file, files, file_index, depth=999, section_depth=
     md = ""
     md += generate_browse(parent_file, files, file_index)
     md += section_depth*"#" + f" `{xmd_entity.display}`\n"
+    md += "***\n\n"
     for sect in SECTION_ORDER:
         if sect in ENTITY_WORDS:
             s_childs = [c for c in xmd_entity.childs if c.type == sect]
@@ -488,19 +489,9 @@ def delete_file(fname):
     print(f"Deleting {fname}")
     os.remove(fname)
 
-cwd = sys.argv[1] if len(sys.argv) == 2 else "."
-
-
-table_ofile = os.path.join(cwd,"doc","table.md")
-i_files = sorted(os.listdir(os.path.join(cwd, "xdoc")))
-o_files = [os.path.splitext(f)[0]+".md" for f in i_files]
-
-for f in os.listdir(os.path.join(cwd, "doc")):
-    delete_file(os.path.join(cwd, "doc", f))
-
-for i, f in enumerate(i_files):
-    xmd_ifile = os.path.join(cwd,"xdoc",f)
-    md_ofile = os.path.join(cwd,"doc",os.path.splitext(f)[0]+".md")
+def process_xmd_file(cwd, o_files, file_index, i_file):
+    xmd_ifile = os.path.join(cwd,"xdoc",i_file)
+    md_ofile = os.path.join(cwd,"doc",os.path.splitext(i_file)[0]+".md")
     xmd_src = read_file(xmd_ifile)
 
     entity = parse_xmd(
@@ -518,36 +509,37 @@ for i, f in enumerate(i_files):
     file_contents = xmd2md(
         entity,
         ("table.md", "table"),
-        [(f, f) for f in o_files],
-        i,
+        o_files,
+        file_index,
         depth=999
     )
 
     for fn, display, md in file_contents:
         write_file(os.path.join(cwd,"doc",fn), md)
 
-"""
-for i, f in enumerate(files):
-    xmd_ifile = os.path.join(cwd,"xdoc",f)
-    md_ofile = os.path.join(cwd,"doc",os.path.splitext(f)[0]+".md")
-    xmd = read_file(xmd_ifile)
-    md, lst_entities = process_xmd(xmd)
+def process_doc(cwd):
+    table_ofile = os.path.join(cwd,"doc","table.md")
+    i_files = sorted(os.listdir(os.path.join(cwd, "xdoc")))
+    o_files = [os.path.splitext(f)[0]+".md" for f in i_files]
 
-    md = generate_browse("table.md", files, i) \
-       + "***\n\n" \
-       + f"# {os.path.splitext(f)[0]}\n" \
-       + generate_table(lst_entities) \
-       + md
-    write_file(md_ofile, md)
-"""
+    for f in os.listdir(os.path.join(cwd, "doc")):
+        delete_file(os.path.join(cwd, "doc", f))
 
-# file table
-md = ""
-md += "## Files\n"
-for i, f in enumerate(o_files):
-    name = os.path.splitext(os.path.split(f)[-1])[0]
-    md_link = f
-    md += f"{i}. [{name}]({md_link})\n"
+    o_files_tup =[(f, f) for f in o_files]
+    for file_index, i_file in enumerate(i_files):
+        process_xmd_file(cwd, o_files_tup, file_index, i_file)
+
+    # file table
+    md = ""
+    md += "## Files\n"
+    for i, f in enumerate(o_files):
+        name = os.path.splitext(os.path.split(f)[-1])[0]
+        md_link = f
+        md += f"{i}. [{name}]({md_link})\n"
 
 
-write_file(table_ofile, md)
+    write_file(table_ofile, md)
+
+if __name__ == "__main__":
+    cwd = sys.argv[1] if len(sys.argv) == 2 else "."
+    process_doc(cwd)

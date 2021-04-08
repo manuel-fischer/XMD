@@ -1,5 +1,7 @@
 [&#8592; parse_block](xmd--parse_block.md) | [&#8593; xmd.md](xmd.md) | [&#8594; parse_xmd](xmd--parse_xmd.md)
 # `parse_group`
+***
+
 **Synopsis**
 
 ```cpp
