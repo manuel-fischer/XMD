@@ -29,22 +29,39 @@ ENTITY_WORDS = {# Title                  Has inline brief
     "attr":     X("Attribute(s)",        True),
     "retval":   X("Return Value(s)",     True),
     #"example":  X("Example(s)",          False),
+
+    # Entities that are not necessarily a physical part of source code
+    # but more specific entities provided by the documented interface
+    "cmd":      X("Command(s)",          False),
+    "opt":      X("Option(s)",           False),
+    "elem":     X("Element(s)",          True),
 }
+del X
+
 SECTION_ORDER = """
     syn
     description
+
     param
+
+    opt
+    cmd
+    elem
+    
     const
     var
     attr
+    
     return
     retval
     sidefx
+    
     type
     struct
     class
     fn
     def
+    
     example
 """.split()
 
@@ -119,7 +136,8 @@ def signature2display(signature):
     tokens = split_tokens(signature)
     if (i := first_group(tokens)) != None:
         return tokens[i-1].text
-    return signature
+    print(tokens)
+    return tokens[0].text
 
 
 def entity_has_subfile(entity):

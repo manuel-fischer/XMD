@@ -1,4 +1,4 @@
-[&#8592; greet](main--greet.md) | [&#8593; main.md](main.md)
+[&#8592; greet](main--greet.md) | [&#8593; main](main.md)
 ***
 
 # `main`
