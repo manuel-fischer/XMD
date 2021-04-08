@@ -10,10 +10,11 @@ str_join_nonempty(join_string, l)
 
 Join strings that are not empty.
 
-## Parameter
+## Parameters
 **`join_string`** &#8213; The string between the nonempty strings.  
+**`l`** &#8213; An iterable of all the strings to be joined.  
 ## Return Value
 
-The joined string.
+The joined string. If an empty string appears between other ones, `join_string` is only inserted once.
 
 

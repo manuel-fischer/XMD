@@ -136,7 +136,8 @@
 @fn[string operations] str_join_nonempty(join_string, l)
 	@briefx Join strings that are not empty.
 	@param join_string The string between the nonempty strings.
-	@return The joined string.
+	@param l An iterable of all the strings to be joined.
+	@return The joined string. If an empty string appears between other ones, `join_string` is only inserted once.
 	
 @fn[output] generate_browse_link(direction, file)
 	@briefx Generates the correponding link for the browse line.
