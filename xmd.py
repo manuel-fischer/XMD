@@ -262,10 +262,10 @@ def xmd2md(xmd_entity, depth=999, section_depth=1):
                 if has_subfile:
                     if depth == 0:
                         subfiles.update(xmd2md(c, 0, section_depth+2))
-                        link = f"[{link}](#to_md_anchor(c.display))"
+                        link = f"[{link}](#{to_md_anchor(c.display)})"
                     else:
                         subfiles.update(xmd2md(c, depth-1, 1))
-                        link = f"[{link}](#to_md_anchor(c.display))" # TODO
+                        link = f"[{link}](#{to_md_anchor(c.display)})" # TODO
                     
                 md += f"**{link}**" # linebreak
                 if c.brief:

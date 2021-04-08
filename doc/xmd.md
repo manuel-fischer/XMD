@@ -20,27 +20,27 @@
 14. [xmd2md](#xmd2md)
 15. [process_xmd](#process_xmd)
 # Constants
-**[`ENTITY_WORDS`](#to_md_anchor(c.display))**  
-**[`SECTION_ORDER`](#to_md_anchor(c.display))**  
-**[`ANCHOR_CHARS`](#to_md_anchor(c.display))**  
+**[`ENTITY_WORDS`](#entity_words)**  
+**[`SECTION_ORDER`](#section_order)**  
+**[`ANCHOR_CHARS`](#anchor_chars)**  
 <small>**parsing**</small>  
-**[`INDENT_WIDTH`](#to_md_anchor(c.display))**  
+**[`INDENT_WIDTH`](#indent_width)**  
 # Classes
-**[`Entity`](#to_md_anchor(c.display))** &#8213; Source code entity  
+**[`Entity`](#entity)** &#8213; Source code entity  
 <small>**parsing**</small>  
-**[`Token`](#to_md_anchor(c.display))** &#8213; A token with its position  
+**[`Token`](#token)** &#8213; A token with its position  
 # Functions
-**[`to_md_anchor`](#to_md_anchor(c.display))**  
-**[`correct_grammar`](#to_md_anchor(c.display))**  
-**[`xmd2md`](#to_md_anchor(c.display))**  
-**[`process_xmd`](#to_md_anchor(c.display))**  
+**[`to_md_anchor`](#to_md_anchor)**  
+**[`correct_grammar`](#correct_grammar)**  
+**[`xmd2md`](#xmd2md)**  
+**[`process_xmd`](#process_xmd)**  
 <small>**parsing**</small>  
-**[`split_tokens`](#to_md_anchor(c.display))**  
-**[`text_slice`](#to_md_anchor(c.display))**  
-**[`dedent`](#to_md_anchor(c.display))**  
-**[`parse_block`](#to_md_anchor(c.display))**  
-**[`parse_group`](#to_md_anchor(c.display))**  
-**[`parse_xmd`](#to_md_anchor(c.display))**  
+**[`split_tokens`](#split_tokens)**  
+**[`text_slice`](#text_slice)**  
+**[`dedent`](#dedent)**  
+**[`parse_block`](#parse_block)**  
+**[`parse_group`](#parse_group)**  
+**[`parse_xmd`](#parse_xmd)**  
 # Childs
 ## `ENTITY_WORDS`
 
@@ -75,10 +75,10 @@ A named tuple containing information about the entities in the source code
 
 ### Attributes
 **`type`** &#8213; The type of the entity  
-**[`category`](#to_md_anchor(c.display))** &#8213; A user defined category  
+**[`category`](#category)** &#8213; A user defined category  
 **`brief`** &#8213; The text that appears in overviews next to the name  
 **`display`** &#8213; The displayed title of the entity  
-**[`sections`](#to_md_anchor(c.display))** &#8213; Special sections: synopsis, description, return  
+**[`sections`](#sections)** &#8213; Special sections: synopsis, description, return  
 **`childs`** &#8213; A list containing all child entities of the entity  
 ### Childs
 #### `category`
