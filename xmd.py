@@ -46,6 +46,7 @@ del X
 SECTION_ORDER = """
     syn
     description
+    note
 
     param
 
@@ -94,6 +95,7 @@ SPECIAL_SECTIONS = {
     "post":  "# Postconditions\n",
     "todo": "# TODO\n",
     "see": "# See also\n",
+    "note": "**Note**  \n",
     "description": "",
     "example":  "# Example\n",
 }
@@ -204,6 +206,9 @@ def parse_group(tokens, start=0, group="[]"):
     else:
         return (start, start, start)
 
+def pack_code(code):
+    return f"```{LANG}\n{code}\n```"
+
 def parse_xmd(xmd_lines, proto, line_no=1):
     (
         type,
@@ -237,7 +242,7 @@ def parse_xmd(xmd_lines, proto, line_no=1):
                         e_signature = ll[text_slice(tokens, rest)]
                         e_display = signature2display(e_signature)
                         e_brief = ""
-                    e_sections = {"syn": f"```{LANG}\n{e_signature}\n```"} if e_signature != e_display else {}
+                    e_sections = {"syn": pack_code(e_signature)} if e_signature != e_display else {}
                         
                     entity = parse_xmd(
                         block,
@@ -262,7 +267,9 @@ def parse_xmd(xmd_lines, proto, line_no=1):
                         sections["description"] += content+"\n"
                     elif tag == "disp":
                         display = content.strip()
-                    elif tag in SPECIAL_SECTIONS:
+                    elif tag in SPECIAL_SECTIONS or tag == "syn*":
+                        if tag == "syn": content = pack_code(content)
+                        if tag == "syn*": tag = "syn"
                         try:             sections[tag] += content+"\n"
                         except KeyError: sections[tag]  = content+"\n"
                     else:

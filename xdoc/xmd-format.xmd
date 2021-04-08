@@ -29,8 +29,10 @@ tag = "@", (entity | command), signature, indented-block
 @tag[entities] elem Element
 
 @cmd syn
+	@syn* ```syn/syn*```
 	@brief Synopsis.
 	Synopsis, allows to specify the synopsis for elements that have inline brief
+	Without a `*` the text behind is interpreted as code. Otherwise it is interpreted as text.
 
 @cmd return
 	@brief Description about the returned value of a function
@@ -67,3 +69,6 @@ tag = "@", (entity | command), signature, indented-block
 	
 @cmd post
 	@brief Postconditions
+
+@cmd note
+	@brief Notes and hints

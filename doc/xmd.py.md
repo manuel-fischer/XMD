@@ -4,7 +4,9 @@
 # `xmd.py`
 **Synopsis**
 
-`python3 xmd.py [<cwd>]`
+```cpp
+python3 xmd.py [<cwd>]
+```
 
 ## Option
 **[`<cwd>`](xmd.py--cwd.md)** &#8213; The current working directory, it might be the github repository.  
