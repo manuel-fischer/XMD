@@ -1,18 +1,107 @@
 @class Entity
+	@brief Source code entity
 	A named tuple containing information about the entities in the source code
 	
-	@param type The type of the entity
-	@param signature The signature/declaration in the source code
-	@param display The displayed title of the entity
-	@param anchor The anchor in the markdown files that identifies the entity
+	@attr type The type of the entity
+	@attr category A user defined category
+		It is `None` if it does not belong to any category
+		@example
+			`@fn[Observers] get`
+	@attr brief The text that appears in overviews next to the name
+	@attr display The displayed title of the entity
+	@attr sections Special sections: synopsis, description, return
+		The synopsis and description sections appear at the top.
+		The return section appears where retval appears.
+	@attr childs A list containing all child entities of the entity
 	
-@const INDENT_WIDTH
+@const ENTITY_WORDS
+	A dictionary containing all entity types, their section title and their signature behavior.
+@const SECTION_ORDER
+	A array containing all entity types and section names
+	
+	
+@const[parsing] INDENT_WIDTH
 	The expected indent (width in spaces) of the text inside an entity
 	
-@fn split_tokens(txt)
+@class[parsing] Token
+	@brief A token with its position
+	A token with its position
+	
+	@attr pos The position in the string it originated from
+	@attr text The content of the token
+	
+@fn[parsing] split_tokens(txt)
 	A function that splits source code into its tokens
 	
 	@param txt The source code that should be tokenized
-	
 	@return It returns a list of strings, each of them is a token.
 	
+@fn[parsing] text_slice(tokens, index, end=None)
+	Creates slice for extracting the text over the specified range of tokens.
+	
+	@param tokens The tokens
+	@param index The first index of the token sequence
+	@param end The first index of the token not in the sequence
+	
+@const ANCHOR_CHARS
+	These are the characters that are kept in the resulting link to a markdown section,
+	which is generated out of the title text itself.
+	Note that spaces are replaced by a hyphen later.
+	
+@fn to_md_anchor(txt)
+	Converts the title of a section to the anchor, which can be used in a markdown link.
+	
+	@param txt A string containing the title text of the section to generate the anchor for, it should not contain any spaces
+	@return A string that represents the anchor.
+	
+@fn correct_grammar(string, amount)
+	Adjusts the string to the given amount, when the amount is one, all plural letters get removed.
+	These are identified by "(...)" at the end of string. Otherwise, the parenthesis get removed.
+	
+	@param string The string containing parenthesized plural form
+	@param amount The amount to adjust the string to
+	@return The adjusted string
+	
+@fn[parsing] dedent(line)
+	Tries to dedent a line.
+
+	@param line The line to be dedented
+	@return If it succedes it returns the dedented line, otherwise `None`
+
+@fn[parsing] parse_block(lines)
+	Gets the contents of the next indented block.
+	
+	@param lines A list of strings containing all the lines
+	@retval block A list of strings containing the dedented lines of the block
+	@retval rest A list containing the rest of the lines, that do not belong to the block
+	
+@fn[parsing] parse_group(tokens, start, group)
+	Parse a group that is delimited by group. Nested groups are handled correctly.
+	@param tokens A list of tokens
+	@param start The index of the token that is potentially a group delimiter
+	@param group Both delimiting characters
+	@retval first The first token inside of the group
+	@retval last  The first token not inside of the group (could be delimiter)
+	@retval rest  The first token after the group
+	
+	
+@fn[parsing] parse_xmd(xmd_lines)
+	Parses xmd source recursively and collects all subentities and text.
+	
+	@param xmd_lines A list of strings containing the lines of the xmd source
+	@return An `Entity` that contains the parsed contents
+	
+@fn xmd2md(xmd_entity, depth):
+	Creates recursively the markdown text for the xmd_entity and its subentities.
+	
+	@param xmd_entity The `Entity` object
+	@param depth The rest depths, in which the subentities are separated into its own files
+	@return A dictionary containing the contents for the markdown files with its relative filename.
+	
+@fn process_xmd(xmd_src)
+	Parses xmd source and generates the corresponding markdown code.
+	It also returns a list of all entities inside.
+	
+	@param xmd_src The xmd source
+	@retval md The generated markdown text
+	@retval lst_entities A list containing all entities
