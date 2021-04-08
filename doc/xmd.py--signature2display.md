@@ -18,6 +18,7 @@ the identifier.
 
 ## Example
 
+
 ```python
 >>> signature2display("int main(int argc, char* argv[])")
 'main'

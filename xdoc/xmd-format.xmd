@@ -52,3 +52,12 @@ tag = "@", (entity | command), signature, indented-block
 	
 @cmd default
 	@brief Specifies the default value of the entity
+	
+@cmd todo
+	@brief TODO-Tasks
+	@todo Generate list, if multiple TODO entries are created
+
+@cmd see
+	@brief See also
+	
+	@todo Links need to be implemented

@@ -75,6 +75,8 @@ SECTION_ORDER = """
     
     example
 
+    see
+
     todo
 """.split()
 
@@ -87,8 +89,9 @@ SPECIAL_SECTIONS = {
     "return": "# Return Value\n",
     "sidefx": "# Side Effects\n",
     "todo": "# TODO\n",
+    "see": "# See also\n",
     "description": "",
-    "example":  "# Example",
+    "example":  "# Example\n",
 }
 
 
@@ -306,15 +309,6 @@ def generate_browse(parent, files, i):
     ]) + "\n"
 
 
-"""
-def generate_table(lst_entities, path="", i0=0):
-    md = ""
-    md += "## Overview\n"
-    for i, e in enumerate(lst_entities):
-        md += f"{i+i0}. [{e.display}]({path}#{to_md_anchor(e.display)})\n"
-    return md
-"""
-
 def xmd2md(xmd_entity, parent_file, files, file_index, depth=999, section_depth=1):
     file = files[file_index]
     filename = file[0]
@@ -435,37 +429,7 @@ def generate_md_files(cwd, o_files, file_index, entity):
 
     for fn, display, md in file_contents:
         write_file(os.path.join(cwd,"doc",fn), md)
-
-
-"""
-def process_xmd_file(cwd, o_files, file_index, i_file):
-    xmd_ifile = os.path.join(cwd,"xdoc",i_file)
-    md_ofile = os.path.join(cwd,"doc",os.path.splitext(i_file)[0]+".md")
-    xmd_src = read_file(xmd_ifile)
-
-    entity = parse_xmd(
-        xmd_src.split("\n"),
-        Entity(
-            type = "file",  
-            category = "",
-            brief = "",
-            display = os.path.split(md_ofile)[-1],
-            sections = {},
-            childs = []
-        )
-    )
-
-    file_contents = xmd2md(
-        entity,
-        ("table.md", "table"),
-        o_files,
-        file_index,
-        depth=999
-    )
-
-    for fn, display, md in file_contents:
-        write_file(os.path.join(cwd,"doc",fn), md)
-"""
+        
 
 def process_doc(cwd):
     table_ofile = os.path.join(cwd,"doc","table.md")
