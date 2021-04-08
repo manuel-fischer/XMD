@@ -49,3 +49,6 @@ tag = "@", (entity | command), signature, indented-block
 	
 @cmd disp
 	@brief Sets the display name of the entity
+	
+@cmd default
+	@brief Specifies the default value of the entity

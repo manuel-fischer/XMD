@@ -38,7 +38,7 @@ ENTITY_WORDS = {# Title                  Has inline brief
     # but more specific entities provided by the documented interface
     "cmd":      X("Command(s)",          False),
     "tag":      X("Tag(s)",              True),
-    "opt":      X("Option(s)",           False),
+    "opt":      X("Option(s)",           True),
     "elem":     X("Element(s)",          True),
 }
 del X
@@ -61,7 +61,8 @@ SECTION_ORDER = """
     const
     var
     attr
-    
+
+    default
     return
     retval
     sidefx
@@ -80,6 +81,7 @@ SPECIAL_SECTIONS = {
     "syn": "**Synopsis**\n", # if @syn(n), then multiple overloads could be written
                              # if the syntax of a declaration is clear, the entity
                              # itself can be introduced with the syn
+    "default": "# Default Value\n",
     "return": "# Return Value\n",
     "sidefx": "# Side Effects\n",
     "description": "",

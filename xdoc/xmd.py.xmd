@@ -1,5 +1,10 @@
 @disp xmd.py
 
+@syn `python3 xmd.py [<cwd>]`
+@opt <cwd> 
+	@briefx The current working directory, it might be the github repository.
+	@default `'./'`
+
 @const LANG
 	@brief The language that is used in generated markdown.
 
