@@ -74,6 +74,8 @@ SECTION_ORDER = """
     def
     
     example
+
+    todo
 """.split()
 
 
@@ -84,6 +86,7 @@ SPECIAL_SECTIONS = {
     "default": "# Default Value\n",
     "return": "# Return Value\n",
     "sidefx": "# Side Effects\n",
+    "todo": "# TODO\n",
     "description": "",
     "example":  "# Example",
 }
