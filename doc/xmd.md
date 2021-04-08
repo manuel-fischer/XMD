@@ -1,7 +1,7 @@
 [&#8593; table](table.md)
 ***
 
-# `.\doc\xmd.md`
+# `xmd.py`
 ## Constants
 **`LANG`** &#8213; The language that is used in generated markdown.  
 <small>**markdown**</small>  

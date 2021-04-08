@@ -1,4 +1,4 @@
-[&#8592; to_md_anchor](xmd--to_md_anchor.md) | [&#8593; xmd.md](xmd.md) | [&#8594; correct_grammar](xmd--correct_grammar.md)
+[&#8592; to_md_anchor](xmd--to_md_anchor.md) | [&#8593; xmd.py](xmd.md) | [&#8594; correct_grammar](xmd--correct_grammar.md)
 ***
 
 # `to_md_filename_part`

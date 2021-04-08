@@ -1,4 +1,4 @@
-[&#8592; ANCHOR_CHARS](xmd--anchor_chars.md) | [&#8593; xmd.md](xmd.md)
+[&#8592; ANCHOR_CHARS](xmd--anchor_chars.md) | [&#8593; xmd.py](xmd.md)
 ***
 
 # `SPECIAL_SECTIONS`

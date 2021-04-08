@@ -1,4 +1,4 @@
-[&#8592; Token](xmd--token.md) | [&#8593; xmd.md](xmd.md) | [&#8594; EntityType](xmd--entitytype.md)
+[&#8592; Token](xmd--token.md) | [&#8593; xmd.py](xmd.md) | [&#8594; EntityType](xmd--entitytype.md)
 ***
 
 # `Entity`

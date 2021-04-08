@@ -1,3 +1,5 @@
+@disp xmd.py
+
 @const LANG
 	@brief The language that is used in generated markdown.
 

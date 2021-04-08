@@ -1,4 +1,4 @@
-[&#8592; parse_group](xmd--parse_group.md) | [&#8593; xmd.md](xmd.md) | [&#8594; str_join_nonempty](xmd--str_join_nonempty.md)
+[&#8592; parse_group](xmd--parse_group.md) | [&#8593; xmd.py](xmd.md) | [&#8594; str_join_nonempty](xmd--str_join_nonempty.md)
 ***
 
 # `parse_xmd`

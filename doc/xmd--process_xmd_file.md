@@ -1,4 +1,4 @@
-[&#8593; xmd.md](xmd.md) | [&#8594; process_doc](xmd--process_doc.md)
+[&#8593; xmd.py](xmd.md) | [&#8594; process_doc](xmd--process_doc.md)
 ***
 
 # `process_xmd_file`

@@ -221,6 +221,8 @@ def parse_xmd(xmd_lines, proto, line_no=1):
                     elif tag == "briefx":
                         brief = (brief + " " + content).strip()
                         sections["description"] += content+"\n"
+                    elif tag == "disp":
+                        display = content.strip()
                     elif tag in SPECIAL_SECTIONS:
                         try:             sections[tag] += content+"\n"
                         except KeyError: sections[tag]  = content+"\n"
@@ -375,6 +377,35 @@ def delete_file(fname):
     print(f"Deleting {fname}")
     os.remove(fname)
 
+def parse_xmd_file(cwd, ifile):
+    xmd_ifile = os.path.join(cwd,"xdoc",ifile)
+    xmd_src = read_file(xmd_ifile)
+    return parse_xmd(
+        xmd_src.split("\n"),
+        Entity(
+            type = "file",  
+            category = "",
+            brief = "",
+            display = os.path.splitext(os.path.split(xmd_ifile)[-1])[0],
+            sections = {},
+            childs = []
+        )
+    )
+
+def generate_md_files(cwd, o_files, file_index, entity):
+    file_contents = xmd2md(
+        entity,
+        ("table.md", "table"),
+        o_files,
+        file_index,
+        depth=999
+    )
+
+    for fn, display, md in file_contents:
+        write_file(os.path.join(cwd,"doc",fn), md)
+
+
+"""
 def process_xmd_file(cwd, o_files, file_index, i_file):
     xmd_ifile = os.path.join(cwd,"xdoc",i_file)
     md_ofile = os.path.join(cwd,"doc",os.path.splitext(i_file)[0]+".md")
@@ -386,7 +417,7 @@ def process_xmd_file(cwd, o_files, file_index, i_file):
             type = "file",  
             category = "",
             brief = "",
-            display = md_ofile,
+            display = os.path.split(md_ofile)[-1],
             sections = {},
             childs = []
         )
@@ -402,27 +433,29 @@ def process_xmd_file(cwd, o_files, file_index, i_file):
 
     for fn, display, md in file_contents:
         write_file(os.path.join(cwd,"doc",fn), md)
+"""
 
 def process_doc(cwd):
     table_ofile = os.path.join(cwd,"doc","table.md")
-    i_files = sorted(os.listdir(os.path.join(cwd, "xdoc")))
-    o_files = [os.path.splitext(f)[0]+".md" for f in i_files]
+    ifiles = sorted(os.listdir(os.path.join(cwd, "xdoc")))
+    ofiles = [os.path.splitext(f)[0]+".md" for f in ifiles]
 
     if os.path.isdir(os.path.join(cwd, "doc")):
         for f in os.listdir(os.path.join(cwd, "doc")):
             delete_file(os.path.join(cwd, "doc", f))
 
-    o_files_tup =[(f, f) for f in o_files]
-    for file_index, i_file in enumerate(i_files):
-        process_xmd_file(cwd, o_files_tup, file_index, i_file)
+    file_entities = [parse_xmd_file(cwd, ifile) for ifile in ifiles]
+    ofiles_tup = [(f, e.display) for f, e in zip(ofiles, file_entities)]
+
+    for i, f in enumerate(ofiles):
+        generate_md_files(cwd, ofiles_tup, i, file_entities[i])
 
     # file table
     md = ""
     md += "## Files\n"
-    for i, f in enumerate(o_files):
-        name = os.path.splitext(os.path.split(f)[-1])[0]
-        md_link = f
-        md += f"{i}. [{name}]({md_link})\n"
+    for i, f in enumerate(ofiles_tup):
+        file, disp = f
+        md += f"{i}. [{disp}]({file})\n"
 
 
     write_file(table_ofile, md)

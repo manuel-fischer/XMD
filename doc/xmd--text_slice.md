@@ -1,4 +1,4 @@
-[&#8592; split_tokens](xmd--split_tokens.md) | [&#8593; xmd.md](xmd.md) | [&#8594; signature2display](xmd--signature2display.md)
+[&#8592; split_tokens](xmd--split_tokens.md) | [&#8593; xmd.py](xmd.md) | [&#8594; signature2display](xmd--signature2display.md)
 ***
 
 # `text_slice`

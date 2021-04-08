@@ -1,4 +1,4 @@
-[&#8592; parse_xmd](xmd--parse_xmd.md) | [&#8593; xmd.md](xmd.md) | [&#8594; entity_has_subfile](xmd--entity_has_subfile.md)
+[&#8592; parse_xmd](xmd--parse_xmd.md) | [&#8593; xmd.py](xmd.md) | [&#8594; entity_has_subfile](xmd--entity_has_subfile.md)
 ***
 
 # `str_join_nonempty`

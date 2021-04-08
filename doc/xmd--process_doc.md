@@ -1,4 +1,4 @@
-[&#8592; process_xmd_file](xmd--process_xmd_file.md) | [&#8593; xmd.md](xmd.md) | [&#8594; read_file](xmd--read_file.md)
+[&#8592; process_xmd_file](xmd--process_xmd_file.md) | [&#8593; xmd.py](xmd.md) | [&#8594; read_file](xmd--read_file.md)
 ***
 
 # `process_doc`
