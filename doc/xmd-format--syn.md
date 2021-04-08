@@ -2,7 +2,12 @@
 ***
 
 # `syn`
+**Synopsis**
+
+```syn/syn*```
+
 
 Synopsis, allows to specify the synopsis for elements that have inline brief
+Without a `*` the text behind is interpreted as code. Otherwise it is interpreted as text.
 
 

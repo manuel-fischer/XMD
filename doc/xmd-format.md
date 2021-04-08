@@ -27,6 +27,7 @@ tag = "@", (entity | command), signature, indented-block
 **[`see`](xmd-format--see.md)** &#8213; See also  
 **`pre`** &#8213; Preconditions  
 **`post`** &#8213; Postconditions  
+**`note`** &#8213; Notes and hints  
 ## Tags
 <small>**entities**</small>  
 **`file`** &#8213; File  
