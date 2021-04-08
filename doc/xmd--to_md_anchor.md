@@ -1,7 +1,7 @@
 [&#8592; delete_file](xmd--delete_file.md) | [&#8593; xmd.md](xmd.md) | [&#8594; to_md_filename_part](xmd--to_md_filename_part.md)
-# `to_md_anchor`
 ***
 
+# `to_md_anchor`
 **Synopsis**
 
 ```cpp

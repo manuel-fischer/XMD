@@ -1,7 +1,7 @@
 [&#8593; xmd.md](xmd.md) | [&#8594; Entity](xmd--entity.md)
-# `Token`
 ***
 
+# `Token`
 
 A token with its position.
 

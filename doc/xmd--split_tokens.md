@@ -1,7 +1,7 @@
 [&#8592; xmd2md](xmd--xmd2md.md) | [&#8593; xmd.md](xmd.md) | [&#8594; text_slice](xmd--text_slice.md)
-# `split_tokens`
 ***
 
+# `split_tokens`
 **Synopsis**
 
 ```cpp

@@ -1,7 +1,7 @@
 [&#8592; generate_browse](xmd--generate_browse.md) | [&#8593; xmd.md](xmd.md) | [&#8594; split_tokens](xmd--split_tokens.md)
-# `xmd2md`
 ***
 
+# `xmd2md`
 **Synopsis**
 
 ```cpp

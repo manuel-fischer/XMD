@@ -1,7 +1,7 @@
 [&#8592; to_md_filename_part](xmd--to_md_filename_part.md) | [&#8593; xmd.md](xmd.md) | [&#8594; generate_browse_link](xmd--generate_browse_link.md)
-# `correct_grammar`
 ***
 
+# `correct_grammar`
 **Synopsis**
 
 ```cpp

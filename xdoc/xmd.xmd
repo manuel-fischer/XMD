@@ -173,11 +173,27 @@
 	@param fname The path of the text file.
 	@param s The new contents to be written to the file
 	@return None.
+	@sidefx Writes to the file and generates the directory containing the file, if it does not exist.
 	
 @fn[file management] delete_file(fname):
 	@briefx Delete a (text) file.
 	The filename is echoed to `stdout`.
 	@param fname The path of the text file.
 	@return None.
-
+	@sidefx Deletes the file.
+	
+@fn process_xmd_file(cwd, o_files, file_index, i_file)
+	@briefx Process a single xmd file.
+	@param cwd The current working directory, it might be the github repository.
+	@param o_files All output filenames: `[(filename, display, *)...]`.
+	@param file_index The index of the current file in `o_files`.
+	@param i_file The filename of the `xmd` file.
+	@return None.
+	@sidefx Writes to all `md` files that are generated from the `xmd` file named by `i_file`.
+	
+@fn process_doc(cwd)
+	@briefx Create the markdown documentation in `doc/` from the `xmd` files in `xdoc/`.
+	@param cwd The current working directory, it might be the github repository.
+	@return None.
+	@sidefx Deletes files that existed in the `doc/` directory and writes the new contents of `md` files. If the `doc/` dir does not exist, the directory is created.
 	

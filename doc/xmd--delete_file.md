@@ -1,7 +1,7 @@
 [&#8592; write_file](xmd--write_file.md) | [&#8593; xmd.md](xmd.md) | [&#8594; to_md_anchor](xmd--to_md_anchor.md)
-# `delete_file`
 ***
 
+# `delete_file`
 **Synopsis**
 
 ```cpp
@@ -17,5 +17,8 @@ The filename is echoed to `stdout`.
 
 None.
 
+## Side Effects
+
+Deletes the file.
 
 

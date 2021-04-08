@@ -1,7 +1,7 @@
 [&#8592; generate_browse_link](xmd--generate_browse_link.md) | [&#8593; xmd.md](xmd.md) | [&#8594; xmd2md](xmd--xmd2md.md)
-# `generate_browse`
 ***
 
+# `generate_browse`
 **Synopsis**
 
 ```cpp

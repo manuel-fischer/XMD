@@ -1,7 +1,7 @@
 [&#8593; table](table.md)
-# `.\doc\xmd.md`
 ***
 
+# `.\doc\xmd.md`
 ## Constants
 **`LANG`** &#8213; The language that is used in generated markdown.  
 <small>**markdown**</small>  
@@ -23,6 +23,8 @@
 **[`Entity`](xmd--entity.md)** &#8213; Source code entity.  
 **[`EntityType`](xmd--entitytype.md)** &#8213; The behavior of a source code entity.  
 ## Functions
+**[`process_xmd_file`](xmd--process_xmd_file.md)** &#8213; Process a single xmd file.  
+**[`process_doc`](xmd--process_doc.md)** &#8213; Create the markdown documentation in `doc/` from the `xmd` files in `xdoc/`.  
 <small>**file management**</small>  
 **[`read_file`](xmd--read_file.md)** &#8213; Read the contents of a text file.  
 **[`write_file`](xmd--write_file.md)** &#8213; Write the contents of a string to a text file.  

@@ -1,7 +1,7 @@
 [&#8592; dedent](xmd--dedent.md) | [&#8593; xmd.md](xmd.md) | [&#8594; parse_group](xmd--parse_group.md)
-# `parse_block`
 ***
 
+# `parse_block`
 **Synopsis**
 
 ```cpp

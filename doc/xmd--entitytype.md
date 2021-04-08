@@ -1,7 +1,7 @@
 [&#8592; Entity](xmd--entity.md) | [&#8593; xmd.md](xmd.md)
-# `EntityType`
 ***
 
+# `EntityType`
 
 The behavior of a source code entity.
 

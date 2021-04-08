@@ -1,7 +1,7 @@
 [&#8592; signature2display](xmd--signature2display.md) | [&#8593; xmd.md](xmd.md) | [&#8594; parse_block](xmd--parse_block.md)
-# `dedent`
 ***
 
+# `dedent`
 **Synopsis**
 
 ```cpp

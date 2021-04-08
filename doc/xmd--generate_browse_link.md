@@ -1,7 +1,7 @@
 [&#8592; correct_grammar](xmd--correct_grammar.md) | [&#8593; xmd.md](xmd.md) | [&#8594; generate_browse](xmd--generate_browse.md)
-# `generate_browse_link`
 ***
 
+# `generate_browse_link`
 **Synopsis**
 
 ```cpp

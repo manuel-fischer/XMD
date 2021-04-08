@@ -1,7 +1,7 @@
 [&#8592; read_file](xmd--read_file.md) | [&#8593; xmd.md](xmd.md) | [&#8594; delete_file](xmd--delete_file.md)
-# `write_file`
 ***
 
+# `write_file`
 **Synopsis**
 
 ```cpp
@@ -17,5 +17,9 @@ The filename is echoed to `stdout`.
 ## Return Value
 
 None.
+
+## Side Effects
+
+Writes to the file and generates the directory containing the file, if it does not exist.
 
 

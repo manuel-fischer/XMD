@@ -39,6 +39,7 @@ SECTION_ORDER = """
     attr
     return
     retval
+    sidefx
     type
     struct
     class
@@ -53,6 +54,7 @@ SPECIAL_SECTIONS = {
                              # if the syntax of a declaration is clear, the entity
                              # itself can be introduced with the syn
     "return": "# Return Value\n",
+    "sidefx": "# Side Effects\n",
     "description": "",
     "example":  "# Example",
 }
@@ -406,8 +408,9 @@ def process_doc(cwd):
     i_files = sorted(os.listdir(os.path.join(cwd, "xdoc")))
     o_files = [os.path.splitext(f)[0]+".md" for f in i_files]
 
-    for f in os.listdir(os.path.join(cwd, "doc")):
-        delete_file(os.path.join(cwd, "doc", f))
+    if os.path.isdir(os.path.join(cwd, "doc")):
+        for f in os.listdir(os.path.join(cwd, "doc")):
+            delete_file(os.path.join(cwd, "doc", f))
 
     o_files_tup =[(f, f) for f in o_files]
     for file_index, i_file in enumerate(i_files):
