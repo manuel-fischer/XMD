@@ -1,7 +1,8 @@
-[&#8592; correct_grammar](xmd.py--correct_grammar.md) | [&#8593; xmd.py](xmd.py.md) | [&#8594; generate_browse](xmd.py--generate_browse.md)
+[&#8592; `correct_grammar`](xmd.py--correct_grammar.md) | [&#8593; `xmd.py`](xmd.py.md) | [&#8594; `generate_browse`](xmd.py--generate_browse.md)
 ***
 
 # `generate_browse_link`
+<small>*Function* - **output**</small>  
 **Synopsis**
 
 ```cpp

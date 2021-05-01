@@ -1,7 +1,8 @@
-[&#8592; parse_block](xmd.py--parse_block.md) | [&#8593; xmd.py](xmd.py.md) | [&#8594; parse_xmd](xmd.py--parse_xmd.md)
+[&#8592; `parse_block`](xmd.py--parse_block.md) | [&#8593; `xmd.py`](xmd.py.md) | [&#8594; `parse_xmd`](xmd.py--parse_xmd.md)
 ***
 
 # `parse_group`
+<small>*Function* - **parsing**</small>  
 **Synopsis**
 
 ```cpp

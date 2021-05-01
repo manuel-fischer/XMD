@@ -1,7 +1,8 @@
-[&#8592; str_join_nonempty](xmd.py--str_join_nonempty.md) | [&#8593; xmd.py](xmd.py.md)
+[&#8592; `str_join_nonempty`](xmd.py--str_join_nonempty.md) | [&#8593; `xmd.py`](xmd.py.md)
 ***
 
 # `entity_has_subfile`
+<small>*Function* - **structure**</small>  
 **Synopsis**
 
 ```cpp

@@ -1,7 +1,8 @@
-[&#8593; XMD Format](xmd-format.md) | [&#8594; todo](xmd-format--todo.md)
+[&#8593; XMD Format](xmd-format.md) | [&#8594; `todo`](xmd-format--todo.md)
 ***
 
 # `syn`
+<small>*Command*</small>  
 **Synopsis**
 
 ```syn/syn*```

@@ -1,7 +1,8 @@
-[&#8592; dedent](xmd.py--dedent.md) | [&#8593; xmd.py](xmd.py.md) | [&#8594; parse_group](xmd.py--parse_group.md)
+[&#8592; `dedent`](xmd.py--dedent.md) | [&#8593; `xmd.py`](xmd.py.md) | [&#8594; `parse_group`](xmd.py--parse_group.md)
 ***
 
 # `parse_block`
+<small>*Function* - **parsing**</small>  
 **Synopsis**
 
 ```cpp

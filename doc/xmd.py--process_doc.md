@@ -1,7 +1,8 @@
-[&#8592; process_xmd_file](xmd.py--process_xmd_file.md) | [&#8593; xmd.py](xmd.py.md) | [&#8594; read_file](xmd.py--read_file.md)
+[&#8592; `process_xmd_file`](xmd.py--process_xmd_file.md) | [&#8593; `xmd.py`](xmd.py.md) | [&#8594; `read_file`](xmd.py--read_file.md)
 ***
 
 # `process_doc`
+<small>*Function*</small>  
 **Synopsis**
 
 ```cpp

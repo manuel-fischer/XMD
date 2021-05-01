@@ -1,7 +1,8 @@
-[&#8592; split_tokens](xmd.py--split_tokens.md) | [&#8593; xmd.py](xmd.py.md) | [&#8594; signature2display](xmd.py--signature2display.md)
+[&#8592; `split_tokens`](xmd.py--split_tokens.md) | [&#8593; `xmd.py`](xmd.py.md) | [&#8594; `signature2display`](xmd.py--signature2display.md)
 ***
 
 # `text_slice`
+<small>*Function* - **parsing**</small>  
 **Synopsis**
 
 ```cpp

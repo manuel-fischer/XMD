@@ -1,7 +1,8 @@
-[&#8592; XMD Format](xmd-format.md) | [&#8593; table](table.md)
+[&#8593; Table](table.md)
 ***
 
 # `xmd.py`
+<small>*File*</small>  
 **Synopsis**
 
 ```python3 xmd.py [<cwd>]```

@@ -1,7 +1,8 @@
-[&#8592; generate_browse_link](xmd.py--generate_browse_link.md) | [&#8593; xmd.py](xmd.py.md) | [&#8594; xmd2md](xmd.py--xmd2md.md)
+[&#8592; `generate_browse_link`](xmd.py--generate_browse_link.md) | [&#8593; `xmd.py`](xmd.py.md) | [&#8594; `xmd2md`](xmd.py--xmd2md.md)
 ***
 
 # `generate_browse`
+<small>*Function* - **output**</small>  
 **Synopsis**
 
 ```cpp

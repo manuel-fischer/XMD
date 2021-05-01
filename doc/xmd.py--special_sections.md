@@ -1,7 +1,8 @@
-[&#8592; ANCHOR_CHARS](xmd.py--anchor_chars.md) | [&#8593; xmd.py](xmd.py.md)
+[&#8592; `ANCHOR_CHARS`](xmd.py--anchor_chars.md) | [&#8593; `xmd.py`](xmd.py.md) | [&#8594; `Token`](xmd.py--token.md)
 ***
 
 # `SPECIAL_SECTIONS`
+<small>*Constant* - **structure**</small>  
 
 The names and their section heading of special sections as a dictionary.
 Special sections: synopsis, description, return, example.

@@ -1,7 +1,8 @@
-[&#8592; parse_group](xmd.py--parse_group.md) | [&#8593; xmd.py](xmd.py.md) | [&#8594; str_join_nonempty](xmd.py--str_join_nonempty.md)
+[&#8592; `parse_group`](xmd.py--parse_group.md) | [&#8593; `xmd.py`](xmd.py.md) | [&#8594; `str_join_nonempty`](xmd.py--str_join_nonempty.md)
 ***
 
 # `parse_xmd`
+<small>*Function* - **parsing**</small>  
 **Synopsis**
 
 ```cpp

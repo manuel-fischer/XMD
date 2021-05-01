@@ -1,7 +1,8 @@
-[&#8592; Token](xmd.py--token.md) | [&#8593; xmd.py](xmd.py.md) | [&#8594; EntityType](xmd.py--entitytype.md)
+[&#8592; `Token`](xmd.py--token.md) | [&#8593; `xmd.py`](xmd.py.md) | [&#8594; `EntityType`](xmd.py--entitytype.md)
 ***
 
 # `Entity`
+<small>*Class* - **structure**</small>  
 
 A named tuple containing information about the entities in the source code.
 

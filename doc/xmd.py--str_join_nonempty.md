@@ -1,7 +1,8 @@
-[&#8592; parse_xmd](xmd.py--parse_xmd.md) | [&#8593; xmd.py](xmd.py.md) | [&#8594; entity_has_subfile](xmd.py--entity_has_subfile.md)
+[&#8592; `parse_xmd`](xmd.py--parse_xmd.md) | [&#8593; `xmd.py`](xmd.py.md) | [&#8594; `entity_has_subfile`](xmd.py--entity_has_subfile.md)
 ***
 
 # `str_join_nonempty`
+<small>*Function* - **string operations**</small>  
 **Synopsis**
 
 ```cpp

@@ -1,7 +1,10 @@
-[&#8593; table](table.md) | [&#8594; xmd.py](xmd.py.md)
+[&#8593; Table](table.md)
 ***
 
-# `XMD Format`
+# XMD Format
+<small>*Topic*</small>  
+
+<right>[XMD Source Test](../xdoc/xmd-format.xmd#L80)</right> << TODO REMOVE
 
 A `xmd` file consists of markdown text mixed with entities and other tags.
 
@@ -9,9 +12,10 @@ A `xmd` file consists of markdown text mixed with entities and other tags.
 ```
 file = {tag | markdown}
 markdown = ANYTHING
-tag = "@", (entity | command), signature, indented-block 
+tag = "@", ["@"], (entity | command), signature, indented-block 
 ```
 
+A double `@@` is self referring to the current layer and allows to override the current entity.
 
 
 ## Commands
@@ -30,6 +34,7 @@ tag = "@", (entity | command), signature, indented-block
 **`note`** &#8213; Notes and hints  
 ## Tags
 <small>**entities**</small>  
+**[`topic`](xmd-format--topic.md)** &#8213; Topic  
 **`file`** &#8213; File  
 **`module`** &#8213; Module  
 **`namespace`** &#8213; Namespace  

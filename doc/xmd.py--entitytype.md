@@ -1,7 +1,8 @@
-[&#8592; Entity](xmd.py--entity.md) | [&#8593; xmd.py](xmd.py.md)
+[&#8592; `Entity`](xmd.py--entity.md) | [&#8593; `xmd.py`](xmd.py.md) | [&#8594; `process_xmd_file`](xmd.py--process_xmd_file.md)
 ***
 
 # `EntityType`
+<small>*Class* - **structure**</small>  
 
 The behavior of a source code entity.
 

@@ -1,7 +1,8 @@
-[&#8592; write_file](xmd.py--write_file.md) | [&#8593; xmd.py](xmd.py.md) | [&#8594; to_md_anchor](xmd.py--to_md_anchor.md)
+[&#8592; `write_file`](xmd.py--write_file.md) | [&#8593; `xmd.py`](xmd.py.md) | [&#8594; `to_md_anchor`](xmd.py--to_md_anchor.md)
 ***
 
 # `delete_file`
+<small>*Function* - **file management**</small>  
 **Synopsis**
 
 ```cpp

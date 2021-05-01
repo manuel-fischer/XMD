@@ -1,7 +1,8 @@
-[&#8593; xmd.py](xmd.py.md) | [&#8594; process_doc](xmd.py--process_doc.md)
+[&#8592; `EntityType`](xmd.py--entitytype.md) | [&#8593; `xmd.py`](xmd.py.md) | [&#8594; `process_doc`](xmd.py--process_doc.md)
 ***
 
 # `process_xmd_file`
+<small>*Function*</small>  
 **Synopsis**
 
 ```cpp

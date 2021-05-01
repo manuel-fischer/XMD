@@ -1,7 +1,8 @@
-[&#8592; xmd2md](xmd.py--xmd2md.md) | [&#8593; xmd.py](xmd.py.md) | [&#8594; text_slice](xmd.py--text_slice.md)
+[&#8592; `xmd2md`](xmd.py--xmd2md.md) | [&#8593; `xmd.py`](xmd.py.md) | [&#8594; `text_slice`](xmd.py--text_slice.md)
 ***
 
 # `split_tokens`
+<small>*Function* - **parsing**</small>  
 **Synopsis**
 
 ```cpp

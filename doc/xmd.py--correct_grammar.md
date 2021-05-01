@@ -1,7 +1,8 @@
-[&#8592; to_md_filename_part](xmd.py--to_md_filename_part.md) | [&#8593; xmd.py](xmd.py.md) | [&#8594; generate_browse_link](xmd.py--generate_browse_link.md)
+[&#8592; `to_md_filename_part`](xmd.py--to_md_filename_part.md) | [&#8593; `xmd.py`](xmd.py.md) | [&#8594; `generate_browse_link`](xmd.py--generate_browse_link.md)
 ***
 
 # `correct_grammar`
+<small>*Function* - **output**</small>  
 **Synopsis**
 
 ```cpp

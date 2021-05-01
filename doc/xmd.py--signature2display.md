@@ -1,7 +1,8 @@
-[&#8592; text_slice](xmd.py--text_slice.md) | [&#8593; xmd.py](xmd.py.md) | [&#8594; dedent](xmd.py--dedent.md)
+[&#8592; `text_slice`](xmd.py--text_slice.md) | [&#8593; `xmd.py`](xmd.py.md) | [&#8594; `dedent`](xmd.py--dedent.md)
 ***
 
 # `signature2display`
+<small>*Function* - **parsing**</small>  
 **Synopsis**
 
 ```cpp
