@@ -1,10 +1,8 @@
-[&#8593; Table](table.md)
+[&#8593; Table](table.md)&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;[&#8594; `xmd.py`](xmd.py.md)&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;||&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<small>[\* xdoc](../xdoc/xmd-format.xmd#L1)</small>
 ***
 
 # XMD Format
 <small>*Topic*</small>  
-
-<right>[XMD Source Test](../xdoc/xmd-format.xmd#L80)</right> << TODO REMOVE
 
 A `xmd` file consists of markdown text mixed with entities and other tags.
 

@@ -1,4 +1,4 @@
-[&#8592; `generate_browse_link`](xmd.py--generate_browse_link.md) | [&#8593; `xmd.py`](xmd.py.md) | [&#8594; `xmd2md`](xmd.py--xmd2md.md)
+[&#8592; `generate_browse_link`](xmd.py--generate_browse_link.md)&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;[&#8593; `xmd.py`](xmd.py.md)&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;[&#8594; `xmd2md`](xmd.py--xmd2md.md)&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;||&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<small>[\* xdoc](../xdoc/xmd.py.xmd#L153)</small>
 ***
 
 # `generate_browse`

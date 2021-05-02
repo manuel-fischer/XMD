@@ -1,4 +1,4 @@
-[&#8592; `correct_grammar`](xmd.py--correct_grammar.md) | [&#8593; `xmd.py`](xmd.py.md) | [&#8594; `generate_browse`](xmd.py--generate_browse.md)
+[&#8592; `correct_grammar`](xmd.py--correct_grammar.md)&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;[&#8593; `xmd.py`](xmd.py.md)&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;[&#8594; `generate_browse`](xmd.py--generate_browse.md)&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;||&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<small>[\* xdoc](../xdoc/xmd.py.xmd#L147)</small>
 ***
 
 # `generate_browse_link`

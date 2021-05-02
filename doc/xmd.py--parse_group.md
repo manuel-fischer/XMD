@@ -1,4 +1,4 @@
-[&#8592; `parse_block`](xmd.py--parse_block.md) | [&#8593; `xmd.py`](xmd.py.md) | [&#8594; `parse_xmd`](xmd.py--parse_xmd.md)
+[&#8592; `parse_block`](xmd.py--parse_block.md)&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;[&#8593; `xmd.py`](xmd.py.md)&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;[&#8594; `parse_xmd`](xmd.py--parse_xmd.md)&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;||&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<small>[\* xdoc](../xdoc/xmd.py.xmd#L121)</small>
 ***
 
 # `parse_group`

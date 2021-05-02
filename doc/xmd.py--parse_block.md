@@ -1,4 +1,4 @@
-[&#8592; `dedent`](xmd.py--dedent.md) | [&#8593; `xmd.py`](xmd.py.md) | [&#8594; `parse_group`](xmd.py--parse_group.md)
+[&#8592; `dedent`](xmd.py--dedent.md)&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;[&#8593; `xmd.py`](xmd.py.md)&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;[&#8594; `parse_group`](xmd.py--parse_group.md)&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;||&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<small>[\* xdoc](../xdoc/xmd.py.xmd#L114)</small>
 ***
 
 # `parse_block`

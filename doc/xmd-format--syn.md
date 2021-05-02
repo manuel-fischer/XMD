@@ -1,4 +1,4 @@
-[&#8593; XMD Format](xmd-format.md) | [&#8594; `todo`](xmd-format--todo.md)
+[&#8593; XMD Format](xmd-format.md)&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;[&#8594; `todo`](xmd-format--todo.md)&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;||&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<small>[\* xdoc](../xdoc/xmd-format.xmd#L35)</small>
 ***
 
 # `syn`

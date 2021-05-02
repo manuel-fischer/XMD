@@ -25,7 +25,8 @@ class Entity:
     display  : str
     sections : list[str]
     childs   : list['Entity']
-    location : str # output filename relative to doc/<filename.md>[#section]
+    location : str # output filename relative to doc/ -- <filename.md>[#section]
+    src_location : (str, int) # input location: ("<filename.xmd>", <line>)
     prev     : wref['Entity'] # or None
     next     : wref['Entity'] # or None
 
@@ -262,6 +263,11 @@ def parse_xmd(xmd_lines, e : Entity, line_no=1):
                 tokens = split_tokens(ll)
                 tag = tokens[0].text
                 if tag in ENTITY_WORDS:
+                    if is_self:
+                        e_location = e.location
+                    else:
+                        e_location = None
+
                     e_type = tag
                     first, last, rest = parse_group(tokens, 1, "[]")
                     e_category = ll[text_slice(tokens, first, last)] if first!=last else ""
@@ -285,7 +291,8 @@ def parse_xmd(xmd_lines, e : Entity, line_no=1):
                             display = e_display,
                             sections = e_sections,
                             childs = [],
-                            location = None, # TODO
+                            location = e_location, # TODO
+                            src_location = (e.src_location[0], line_no),
                             prev = None,
                             next = None,
                         ),
@@ -324,6 +331,8 @@ def parse_xmd(xmd_lines, e : Entity, line_no=1):
 LONG_LINE = "&#8213;"
 SPLIT_LINE = "|"
 
+LARGE_SPACE = '&nbsp;'*3
+
 DIRECTION_STR = {
     "left":  "&#8592;",
     "up":    "&#8593;",
@@ -341,21 +350,26 @@ def generate_browse_link(direction, file_entity):
     
 
 def generate_browse(parent, files, i):
-    return str_join_nonempty(f" {SPLIT_LINE} ", [
+    md = str_join_nonempty(f"{LARGE_SPACE}{SPLIT_LINE}{LARGE_SPACE}", [
         (generate_browse_link("left", files[i-1]) if i != 0 else ""),
         (generate_browse_link("up", parent)),
         (generate_browse_link("right", files[i+1]) if i != len(files)-1 else "")
-    ]) + "\n"
+    ])
+    if files[i].src_location:
+        md = str_join_nonempty(f"{LARGE_SPACE*2}{SPLIT_LINE*2}{LARGE_SPACE*2}", [
+            md,
+            f"<small>[\\* xdoc](../xdoc/{files[i].src_location[0]}#L{files[i].src_location[1]})</small>"
+        ])
+    return md + "\n"
 
 
 def realize_filestructure(xmd_entity : Entity, filenames, file_index, depth=999, section_depth=1):
     filename = filenames[file_index]
-    file_prefix = os.path.splitext(filename)[0]
-
     if not xmd_entity.location:
         xmd_entity.location = filename
     else:
         filename = xmd_entity.location
+    file_prefix = os.path.splitext(filename)[0]
 
     prev = None
     for sect in SECTION_ORDER:
@@ -390,7 +404,7 @@ def xmd2md(xmd_entity, parent_entity, file_entities, file_index, depth=999, sect
     md = ""
     #if parent_entity is not None:
         #md += generate_browse(parent_entity, file_entities, file_index)
-    md += generate_browse(parent_entity, [deref(xmd_entity.prev), None, deref(xmd_entity.next)], 1)
+    md += generate_browse(parent_entity, [deref(xmd_entity.prev), xmd_entity, deref(xmd_entity.next)], 1)
     md += "***\n\n"
     md += section_depth*"#" + f" {xmd_entity.display}\n"
     if xmd_entity.category or xmd_entity.type in ENTITY_WORDS:
@@ -493,6 +507,7 @@ def delete_file(fname):
 def parse_xmd_file(cwd, ifile):
     xmd_ifile = os.path.join(cwd,"xdoc",ifile)
     xmd_src = read_file(xmd_ifile)
+    ofile = os.path.splitext(ifile)[0]+".md"
     return parse_xmd(
         xmd_src.split("\n"),
         Entity(
@@ -502,7 +517,8 @@ def parse_xmd_file(cwd, ifile):
             display = f"`{os.path.splitext(os.path.split(xmd_ifile)[-1])[0]}`",
             sections = {},
             childs = [],
-            location = None, # TODO
+            location = ofile,
+            src_location = (ifile, 1),
             prev = None,
             next = None,
         )
@@ -531,8 +547,8 @@ def process_doc(cwd):
             delete_file(os.path.join(cwd, "doc", f))
 
     file_entities = [parse_xmd_file(cwd, ifile) for ifile in ifiles]
-    for i, e in enumerate(file_entities):
-        realize_filestructure(e, ofiles, i)
+    #for i, e in enumerate(file_entities):
+        #realize_filestructure(e, ofiles, i)
 
     #ofiles_tup = [(f, e.display) for f, e in zip(ofiles, file_entities)]
 
@@ -544,9 +560,11 @@ def process_doc(cwd):
         sections = {},
         childs = file_entities, 
         location = "table.md",
+        src_location = None,
         prev = None,
         next = None
     )
+    realize_filestructure(root, ["table.md"], 0)
     generate_md_files(cwd, None, [root], 0, root)
     return
 

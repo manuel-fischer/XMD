@@ -1,6 +1,5 @@
 @@topic XMD Format
 @disp XMD Format
-<right>[XMD Source Test](../xdoc/xmd-format.xmd#L80)</right> << TODO REMOVE
 
 A `xmd` file consists of markdown text mixed with entities and other tags.
 

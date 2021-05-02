@@ -1,4 +1,4 @@
-[&#8592; `generate_browse`](xmd.py--generate_browse.md) | [&#8593; `xmd.py`](xmd.py.md) | [&#8594; `split_tokens`](xmd.py--split_tokens.md)
+[&#8592; `generate_browse`](xmd.py--generate_browse.md)&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;[&#8593; `xmd.py`](xmd.py.md)&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;[&#8594; `split_tokens`](xmd.py--split_tokens.md)&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;||&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<small>[\* xdoc](../xdoc/xmd.py.xmd#L159)</small>
 ***
 
 # `xmd2md`

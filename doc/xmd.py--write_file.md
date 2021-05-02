@@ -1,4 +1,4 @@
-[&#8592; `read_file`](xmd.py--read_file.md) | [&#8593; `xmd.py`](xmd.py.md) | [&#8594; `delete_file`](xmd.py--delete_file.md)
+[&#8592; `read_file`](xmd.py--read_file.md)&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;[&#8593; `xmd.py`](xmd.py.md)&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;[&#8594; `delete_file`](xmd.py--delete_file.md)&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;||&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<small>[\* xdoc](../xdoc/xmd.py.xmd#L176)</small>
 ***
 
 # `write_file`

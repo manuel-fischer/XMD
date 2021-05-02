@@ -1,4 +1,4 @@
-[&#8593; `Entity`](xmd.py--entity.md)
+[&#8593; `Entity`](xmd.py--entity.md)&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;||&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<small>[\* xdoc](../xdoc/xmd.py.xmd#L13)</small>
 ***
 
 # `category`

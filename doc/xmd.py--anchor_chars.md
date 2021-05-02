@@ -1,4 +1,4 @@
-[&#8592; `<cwd>`](xmd.py--cwd.md) | [&#8593; `xmd.py`](xmd.py.md) | [&#8594; `SPECIAL_SECTIONS`](xmd.py--special_sections.md)
+[&#8592; `<cwd>`](xmd.py--cwd.md)&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;[&#8593; `xmd.py`](xmd.py.md)&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;[&#8594; `SPECIAL_SECTIONS`](xmd.py--special_sections.md)&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;||&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<small>[\* xdoc](../xdoc/xmd.py.xmd#L63)</small>
 ***
 
 # `ANCHOR_CHARS`
