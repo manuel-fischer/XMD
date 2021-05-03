@@ -25,8 +25,8 @@ class Entity:
     display  : str
     sections : list[str]
     childs   : list['Entity']
-    location : str # output filename relative to doc/ -- <filename.md>[#section]
-    src_location : (str, int) # input location: ("<filename.xmd>", <line>)
+    location : str
+    src_location : (str, int)
     prev     : wref['Entity'] # or None
     next     : wref['Entity'] # or None
 
@@ -349,22 +349,22 @@ def generate_browse_link(direction, file_entity):
     return f"[{DIRECTION_STR[direction]} {file_entity.display}]({file_entity.location})"
     
 
-def generate_browse(parent, files, i):
+def generate_browse(parent, file_entity):
     md = str_join_nonempty(f"{LARGE_SPACE}{SPLIT_LINE}{LARGE_SPACE}", [
-        (generate_browse_link("left", files[i-1]) if i != 0 else ""),
-        (generate_browse_link("up", parent)),
-        (generate_browse_link("right", files[i+1]) if i != len(files)-1 else "")
+        generate_browse_link("left", deref(file_entity.prev)),
+        generate_browse_link("up", parent),
+        generate_browse_link("right", deref(file_entity.next))
     ])
-    if files[i].src_location:
+    if file_entity.src_location:
         md = str_join_nonempty(f"{LARGE_SPACE*2}{SPLIT_LINE*2}{LARGE_SPACE*2}", [
             md,
-            f"<small>[\\* xdoc](../xdoc/{files[i].src_location[0]}#L{files[i].src_location[1]})</small>"
+            f"<small>[\\* xdoc](../xdoc/{file_entity.src_location[0]}#L{file_entity.src_location[1]})</small>"
         ])
     return md + "\n"
 
 
-def realize_filestructure(xmd_entity : Entity, filenames, file_index, depth=999, section_depth=1):
-    filename = filenames[file_index]
+def realize_filestructure(xmd_entity : Entity, filename : str, depth=999, section_depth=1):
+    assert filename
     if not xmd_entity.location:
         xmd_entity.location = filename
     else:
@@ -387,24 +387,21 @@ def realize_filestructure(xmd_entity : Entity, filenames, file_index, depth=999,
                     c.prev = wref(prev)
                 prev = c
 
-                kw = dict(filenames = s_files, file_index = i)
                 if depth <= 0:
                     pass
                 else:
-                    realize_filestructure(c, **kw, depth=depth-1, section_depth=1)
+                    realize_filestructure(c, filename = s_files[i], depth=depth-1, section_depth=1)
 
 
 
-def xmd2md(xmd_entity, parent_entity, file_entities, file_index, depth=999, section_depth=1):
-    assert xmd_entity == file_entities[file_index]
+def xmd2md(xmd_entity, parent_entity, depth=999, section_depth=1):
     filename = xmd_entity.location
     #file_prefix = os.path.splitext(filename)[0]
+    assert filename
     
     subfiles = []
     md = ""
-    #if parent_entity is not None:
-        #md += generate_browse(parent_entity, file_entities, file_index)
-    md += generate_browse(parent_entity, [deref(xmd_entity.prev), xmd_entity, deref(xmd_entity.next)], 1)
+    md += generate_browse(parent_entity, xmd_entity)
     md += "***\n\n"
     md += section_depth*"#" + f" {xmd_entity.display}\n"
     if xmd_entity.category or xmd_entity.type in ENTITY_WORDS:
@@ -453,11 +450,10 @@ def xmd2md(xmd_entity, parent_entity, file_entities, file_index, depth=999, sect
                 md += "  \n" # two spaces -- linebreak
                 
             for i, c in enumerate(s_childs_exist):
-                kw = dict(parent_entity = xmd_entity, file_entities = s_childs_exist, file_index = i)
                 if depth <= 0:
-                    subfiles += xmd2md(c, **kw, depth=-1, section_depth=section_depth+2)
+                    subfiles += xmd2md(c, parent_entity = xmd_entity, depth=-1, section_depth=section_depth+2)
                 else:
-                    subfiles += xmd2md(c, **kw, depth=depth-1, section_depth=1)
+                    subfiles += xmd2md(c, parent_entity = xmd_entity, depth=depth-1, section_depth=1)
                 
         else:
             sect_md = xmd_entity.sections.get(sect, "")
@@ -481,8 +477,6 @@ def xmd2md(xmd_entity, parent_entity, file_entities, file_index, depth=999, sect
 
     subfiles += [(xmd_entity.location, xmd_entity.display, md)]
     return subfiles
-
-#def table2md():
 
 def read_file(fname):
     print(f"Reading {fname}")
@@ -524,12 +518,10 @@ def parse_xmd_file(cwd, ifile):
         )
     )
 
-def generate_md_files(cwd, root, o_files, file_index, entity):
+def generate_md_files(cwd, root, entity):
     file_contents = xmd2md(
         entity,
         root,
-        o_files,
-        file_index,
         depth=999
     )
 
@@ -547,10 +539,6 @@ def process_doc(cwd):
             delete_file(os.path.join(cwd, "doc", f))
 
     file_entities = [parse_xmd_file(cwd, ifile) for ifile in ifiles]
-    #for i, e in enumerate(file_entities):
-        #realize_filestructure(e, ofiles, i)
-
-    #ofiles_tup = [(f, e.display) for f, e in zip(ofiles, file_entities)]
 
     root = Entity(
         type = "table",
@@ -564,21 +552,8 @@ def process_doc(cwd):
         prev = None,
         next = None
     )
-    realize_filestructure(root, ["table.md"], 0)
-    generate_md_files(cwd, None, [root], 0, root)
-    return
-
-    for i, e in enumerate(file_entities):
-        generate_md_files(cwd, root, file_entities, i, e)
-
-    # file table
-    md = ""
-    md += "## Files\n"
-    for i, e in enumerate(file_entities):
-        md += f"{i}. [{e.display}]({e.location})\n"
-
-
-    write_file(table_ofile, md)
+    realize_filestructure(root, "table.md")
+    generate_md_files(cwd, None, root)
 
 if __name__ == "__main__":
     cwd = sys.argv[1] if len(sys.argv) == 2 else "."

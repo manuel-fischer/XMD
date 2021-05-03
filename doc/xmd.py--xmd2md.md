@@ -1,4 +1,4 @@
-[&#8592; `generate_browse`](xmd.py--generate_browse.md)&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;[&#8593; `xmd.py`](xmd.py.md)&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;[&#8594; `split_tokens`](xmd.py--split_tokens.md)&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;||&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<small>[\* xdoc](../xdoc/xmd.py.xmd#L159)</small>
+[&#8592; `generate_browse`](xmd.py--generate_browse.md)&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;[&#8593; `xmd.py`](xmd.py.md)&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;[&#8594; `split_tokens`](xmd.py--split_tokens.md)&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;||&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<small>[\* xdoc](../xdoc/xmd.py.xmd#L246)</small>
 ***
 
 # `xmd2md`
@@ -6,7 +6,7 @@
 **Synopsis**
 
 ```cpp
-xmd2md(xmd_entity, parent_file, files, file_index, depth=999, section_depth=1)
+xmd2md(xmd_entity, parent_file, depth=999, section_depth=1)
 ```
 
 Creates recursively the markdown text for the xmd_entity and its subentities.
@@ -15,9 +15,7 @@ Creates recursively the markdown text for the xmd_entity and its subentities.
 ## Parameters
 **`xmd_entity`** &#8213; The `Entity` object.  
 **`parent_file`** &#8213; A tuple identifying the parent file: `(filename, display, *)`.  
-**`files`** &#8213; A list of file tuples in the current level of the hierarchy: `[(filename, display, *)...]`.  
-**`file_index`** &#8213; The index of the current file in `files`.  
-**`depth`** &#8213; The rest depths, in which the subentities are separated into its own files.  
+**`depth`** &#8213; The rest depth, in which the subentities are separated into their own files.  
 **`section_depth`** &#8213; The depth/count of `#` when creating section headers.  
 ## Return Value
 

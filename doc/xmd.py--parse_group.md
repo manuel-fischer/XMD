@@ -1,4 +1,4 @@
-[&#8592; `parse_block`](xmd.py--parse_block.md)&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;[&#8593; `xmd.py`](xmd.py.md)&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;[&#8594; `parse_xmd`](xmd.py--parse_xmd.md)&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;||&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<small>[\* xdoc](../xdoc/xmd.py.xmd#L121)</small>
+[&#8592; `first_group`](xmd.py--first_group.md)&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;[&#8593; `xmd.py`](xmd.py.md)&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;[&#8594; `parse_xmd`](xmd.py--parse_xmd.md)&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;||&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<small>[\* xdoc](../xdoc/xmd.py.xmd#L187)</small>
 ***
 
 # `parse_group`
@@ -6,7 +6,7 @@
 **Synopsis**
 
 ```cpp
-parse_group(tokens, start, group)
+parse_group(tokens, start=0, group="[]")
 ```
 
 Parse a group that is delimited by group. Nested groups are handled correctly.

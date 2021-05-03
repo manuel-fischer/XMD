@@ -1,10 +1,25 @@
 @syn* ```python3 xmd.py [<cwd>]```
+
+@todo
+	* `@syn` command should strip empty lines at the beginning and end
+	* A way to force that an entity is inlined in the current entity
+
 @opt <cwd> 
 	@briefx The current working directory, it might be the github repository.
 	@default `'./'`
 
+@type[implementation details] wref
+	@brief Alias for weakref.ref
+
+@fn[implementation details] deref(w : wref['T']) -> 'T':
+	@briefx Dereferences a weak reference
+
 @const LANG
-	@brief The language that is used in generated markdown.
+	@briefx The language that is used in generated markdown.
+	@todo
+		should be configurable through a command like `@lang` or 
+		should be determined by the inner file extension: like `.py`
+		in `xmd.py.xmd`
 
 @class[structure] Entity
 	@brief Source code entity.
@@ -19,6 +34,18 @@
 	@attr display The displayed title of the entity.
 	@attr sections The contents of special sections. See SPECIAL_SECTIONS.
 	@attr childs A list containing all child entities of the entity.
+	@attr location A string that identifies the output filename of the entity
+		@syn location = "<filename.md>[#section]"
+		A string that identifies the output filename of the entity
+		relative to `doc/`.
+
+		@todo
+			Implement sections, when the entity is not the root element of
+			a markdown file, currently its `None` in this case.
+	@attr src_location The input location: `("<filename.xmd>", <line>)`
+	@attr prev A weakpointer referring to the previous entity or None. Set by `realize_filestructure` 
+	@attr prev A weakpointer referring to the next entity or None. Set by `realize_filestructure`
+
 	
 @class[structure] EntityType
 	@briefx The behavior of a source code entity.
@@ -37,7 +64,37 @@
 			
 	The synopsis and description sections appear at the top.
 	The return section appears where retval appears.
-	
+
+@const[commands] COMMANDS
+	@briefx A dictionary mapping from command names to command functions
+
+	It is populated by the `command` decorator.
+
+@fn[commands] command
+	@syn @command(name="<name>")
+		def cmd_<name>(e : entity, content : str):
+			...
+	@briefx Decorator, that registers a command in `COMMANDS`.
+	@param name The name of the command.
+	@param func
+		@syn cmd_<name>(e : entity, content : str)
+		@briefx The function that should be registered with the given command name.
+		@param e The current entity (the context) on which the command is applied to.
+		@param content 
+			@brief The contents of the command, might be multiple lines if
+				the introducing line is followed by indented lines.
+		@return The return value is discarded.
+
+
+@cmd[commands] cmd_brief
+	@brief Implementation for the `@brief` command
+
+@cmd[commands] cmd_briefx
+	@brief Implementation for the `@briefx` command
+
+@cmd[commands] cmd_disp
+	@brief Implementation for the `@disp` command
+
 @const[parsing] INDENT_WIDTH
 	@brief The expected indent (width in spaces) of the text inside an entity.
 	
@@ -117,8 +174,17 @@
 	@param lines A list of strings containing all the lines.
 	@retval block A list of strings containing the dedented lines of the block.
 	@retval rest A list containing the rest of the lines, that do not belong to the block.
-	
-@fn[parsing] parse_group(tokens, start, group)
+
+
+@fn[parsing] first_group(tokens, start=0)
+	@briefx Find the next opening or closing grouping token.
+	@param tokens A list of `Token`s.
+	@param start The starting postion of the search.
+	@return Index of the first token that is a grouping token,
+		if no grouping token is found return `None`.
+
+
+@fn[parsing] parse_group(tokens, start=0, group="[]")
 	Parse a group that is delimited by group. Nested groups are handled correctly.
 	@param tokens A list of tokens.
 	@param start The index of the token that is potentially a group delimiter.
@@ -127,15 +193,21 @@
 	@retval last  The first token not inside of the group (could be delimiter).
 	@retval rest  The first token after the group.
 	
+
+@fn[markdown] pack_code(code)
+	@brief Format `code` as a multiline codeblock.
 	
-@fn[parsing] parse_xmd(xmd_lines)
+@fn[parsing] parse_xmd(xmd_lines, e : Entity, line_no=1)
 	Parses xmd source recursively and collects all subentities and text.
 	
 	@param xmd_lines A list of strings containing the lines of the xmd source.
+	@param e The entity with initial information.
+	@param line_no The line number of the first line of the entity.
 	@return An `Entity` that contains the parsed contents.
 	
 @const[output] LONG_LINE A horizontal line used before brief descriptions.
 @const[output] SPLIT_LINE A vertical line used in between links of the browse line.
+@const[output] LARGE_SPACE A string that is inserted where larger spaces should appear.
 @const[output] DIRECTION_STR The arrow characters for all four directions.
 	
 @fn[string operations] str_join_nonempty(join_string, l)
@@ -144,26 +216,39 @@
 	@param l An iterable of all the strings to be joined.
 	@return The joined string. If an empty string appears between other ones, `join_string` is only inserted once.
 	
-@fn[output] generate_browse_link(direction, file)
+@fn[output] generate_browse_link(direction, file_entity)
 	@briefx Generates the correponding link for the browse line.
 	@param direction The direction in the hierarchy in which the link points to.
-	@param file A tuple identifying the file: `(filename, display, *)`.
-	@return The link for the browse line.
+	@param file_entity An `Entity` or `None` identifying the file.
+	@return The markdown link for the browse line.
 	
 @fn[output] generate_browse(parent, files, i)
 	@briefx Generates the browse line.
-	@param parent A tuple identifying the parent file: `(filename, display, *)`.
-	@param files A list of file tuples in the current level of the hierarchy: `[(filename, display, *)...]`.
-	@param i The index of the current file in `files`.
-	
-@fn[output] xmd2md(xmd_entity, parent_file, files, file_index, depth=999, section_depth=1)
+	@param parent An `Entity` or `None` identifying the parent file.
+	@param file_entity
+		@briefx An `Entity` that identifies the current file.
+		To generate the links properly it should have `prev` and `next`
+		set accordingly (by `realize_filestructure`).
+
+@fn[structure] realize_filestructure(xmd_entity : Entity, filename : str, depth=999, section_depth=1)
+	@briefx Sets the filename information of the `xmd_entity` and its
+		subentities recursively.
+
+	@param xmd_entity The root entity.
+	@param filename
+		@briefx The expected filename of the generated markdown file to that entity.
+		It might be overridden by the `@location` command
+		@todo implement `@location command`
+	@param depth The rest depth, in which the subentities are separated into their own files.
+	@param section_depth The depth/count of `#` when creating section headers.
+
+
+@fn[output] xmd2md(xmd_entity, parent_file, depth=999, section_depth=1)
 	Creates recursively the markdown text for the xmd_entity and its subentities.
 	
 	@param xmd_entity The `Entity` object.
 	@param parent_file A tuple identifying the parent file: `(filename, display, *)`.
-	@param files A list of file tuples in the current level of the hierarchy: `[(filename, display, *)...]`.
-	@param file_index The index of the current file in `files`.
-	@param depth The rest depths, in which the subentities are separated into its own files.
+	@param depth The rest depth, in which the subentities are separated into their own files.
 	@param section_depth The depth/count of `#` when creating section headers.
 	@return A dictionary containing the contents for the markdown files with its relative filename.
 	
@@ -188,14 +273,22 @@
 	@return None.
 	@sidefx Deletes the file.
 	
-@fn process_xmd_file(cwd, o_files, file_index, i_file)
-	@briefx Process a single xmd file.
+@fn parse_xmd_file(cwd, ifile)
+	@briefx Parse the `.xmd` file named by `ifile`.
+	@param cwd The directory in which there is a file named `ifile`.
+	@param ifile The relative path of the `.xmd` file to be parsed.
+	@return The root `Entity`.
+
+@fn generate_md_files(cwd, root, entity)
+	@briefx Generate and write out 
+
+@fn generate_md_files(cwd, root, entity)
+	@briefx Generate and write out all the files corresponding to an `Entity` and its subentities.
 	@param cwd The current working directory, it might be the github repository.
-	@param o_files All output filenames: `[(filename, display, *)...]`.
-	@param file_index The index of the current file in `o_files`.
-	@param i_file The filename of the `xmd` file.
+	@param root The parent `Entity` or `None`.
+	@param entity The entity to generate the markdown files for.
 	@return None.
-	@sidefx Writes to all `md` files that are generated from the `xmd` file named by `i_file`.
+	@sidefx Writes to all `md` files that are generated from `entity`.
 	
 @fn process_doc(cwd)
 	@briefx Create the markdown documentation in `doc/` from the `xmd` files in `xdoc/`.
