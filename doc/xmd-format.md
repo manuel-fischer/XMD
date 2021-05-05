@@ -4,6 +4,7 @@
 # XMD Format
 <small>*Topic*</small>  
 
+
 A `xmd` file consists of markdown text mixed with entities and other tags.
 
 ## Syntax

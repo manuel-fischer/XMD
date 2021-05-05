@@ -3,6 +3,6 @@
 
 # Table
 ## Topic
-**[XMD Format](xmd-format.md)** &#8213; Format  
+**[XMD Format](xmd-format.md)**  
 ## File
 **[`xmd.py`](xmd.py.md)**  

@@ -17,6 +17,9 @@
 **`cmd_disp`** &#8213; Implementation for the `@disp` command  
 ## Constants
 **[`LANG`](xmd.py--lang.md)** &#8213; The language that is used in generated markdown.  
+**`HEADER_SIGNATURE`** &#8213; Parse a tag header as a function/macro signature.  
+**`HEADER_BRIEF`** &#8213; Parse a tag header as an identifier followed by a brief description.  
+**`HEADER_TITLE`** &#8213; Parse a tag header as the title  
 <small>**commands**</small>  
 **[`COMMANDS`](xmd.py--commands.md)** &#8213; A dictionary mapping from command names to command functions  
 <small>**markdown**</small>  

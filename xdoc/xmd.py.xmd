@@ -52,7 +52,11 @@
 	
 	@attr title The title shown at the top of a section.
 	@attr inline_brief The text after the first token is parsed as the brief text, instead of the part of a signature.
-	
+
+@const HEADER_SIGNATURE Parse a tag header as a function/macro signature.
+@const HEADER_BRIEF Parse a tag header as an identifier followed by a brief description.
+@const HEADER_TITLE Parse a tag header as the title
+
 @const[structure] ENTITY_WORDS
 	@brief A dictionary containing all entity types, their section title and their signature behavior.
 @const[structure] SECTION_ORDER
