@@ -3,11 +3,6 @@
 
 # `Entity`
 <small>*Class* - **structure**</small>  
-**Synopsis**
-
-```cpp
-Entity
-```
 
 A named tuple containing information about the entities in the source code.
 

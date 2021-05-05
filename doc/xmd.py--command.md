@@ -6,8 +6,6 @@
 **Synopsis**
 
 ```cpp
-command
-``````cpp
 @command(name="<name>")
 def cmd_<name>(e : entity, content : str):
 	...

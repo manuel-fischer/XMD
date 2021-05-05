@@ -3,11 +3,6 @@
 
 # `Token`
 <small>*Class* - **parsing**</small>  
-**Synopsis**
-
-```cpp
-Token
-```
 
 A token with its position.
 

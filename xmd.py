@@ -285,6 +285,7 @@ def parse_xmd(xmd_lines, e : Entity, line_no=1):
                     elif head_fmt == HEADER_SIGNATURE:
                         e_signature = ll[text_slice(tokens, rest)]
                         e_display = signature2display(e_signature)
+                        if e_signature == e_display: e_signature = None
                         e_display = f"`{e_display}`"
                         e_brief = ""
                     elif head_fmt == HEADER_TITLE:

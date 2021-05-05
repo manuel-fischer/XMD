@@ -3,11 +3,6 @@
 
 # `EntityType`
 <small>*Class* - **structure**</small>  
-**Synopsis**
-
-```cpp
-EntityType
-```
 
 The behavior of a source code entity.
 
