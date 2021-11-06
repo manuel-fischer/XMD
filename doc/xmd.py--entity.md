@@ -17,5 +17,6 @@ A named tuple containing information about the entities in the source code.
 **[`location`](xmd.py--entity--location.md)** &#8213; A string that identifies the output filename of the entity  
 **`xmd_location`** &#8213; The xmd input location: `("<filename.xmd>", <line>)`  
 **`src_location`** &#8213; The location in the source code: `("<filename.xmd>", <line>)`  
+**`config`** &#8213; Set of special flags   
 **`prev`** &#8213; A weakpointer referring to the previous entity or None. Set by `realize_filestructure`   
 **`prev`** &#8213; A weakpointer referring to the next entity or None. Set by `realize_filestructure`  

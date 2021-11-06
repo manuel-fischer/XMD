@@ -1,4 +1,4 @@
-[&#8593; `generate_browse`](xmd.py--generate_browse.md)&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;||&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<small>[\* xdoc](../xdoc/xmd.py.xmd#L234)</small>
+[&#8593; `generate_browse`](xmd.py--generate_browse.md)&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;||&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<small>[\* xdoc](../xdoc/xmd.py.xmd#L235)</small>
 ***
 
 # `file_entity`
