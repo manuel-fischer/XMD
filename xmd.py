@@ -3,6 +3,7 @@ from dataclasses import dataclass
 import string
 import os
 import sys
+import shutil
 from weakref import ref as wref
 
 def deref(w : wref['T']) -> 'T':
@@ -36,11 +37,16 @@ HEADER_BRIEF     = 0
 HEADER_SIGNATURE = 1
 HEADER_TITLE     = 2
 
+# TODO correct link generation with nested directories
+#SEP = "/"  # nested directory structure
+SEP = "--" # flat directory structure
+
 X = EntityType
 ENTITY_WORDS = {# Title                  Header format
     "topic":    X("Topic(s)",            HEADER_TITLE), # TODO parse whole line as title
 
     "file":     X("File(s)",             HEADER_BRIEF),
+    "directory":X("Director(ies)y",      HEADER_BRIEF),
     "module":   X("Module(s)",           HEADER_BRIEF),
     "namespace":X("Namespace(s)",        HEADER_BRIEF),
     
@@ -79,6 +85,7 @@ SECTION_ORDER = """
     elem
     
     topic
+    directory
     file
     module
     namespace
@@ -191,12 +198,20 @@ def to_md_anchor(txt):
 def to_md_filename_part(name):
     return to_md_anchor(name)
 
+
+def make_loc(path):
+    return path.replace("/",  SEP) \
+               .replace("\\", SEP)
+
+
 def correct_grammar(string, amount):
+    l = string.rfind("(")
+    if l == -1: return string
+    r = string.rfind(")")
     if amount == 1:
-        return string[:string.rfind("(")]
+        return string[:l] + string[r+1:]
     else:
-        return string.replace("(","") \
-                     .replace(")","")
+        return string[:l] + string[l+1:r]
 
 
 def signature2display(signature):
@@ -252,7 +267,7 @@ def parse_group(tokens, start=0, group="[]"):
 def pack_code(code):
     return f"```{LANG}\n{code}\n```"
 
-def parse_xmd(xmd_lines, e : Entity, line_no=1):
+def parse_xmd(xmd_lines, e : Entity, line_no=1) -> Entity:
     if "description" not in e.sections: e.sections["description"] = ""
 
     try:
@@ -391,7 +406,7 @@ def realize_filestructure(xmd_entity : Entity, filename : str, depth=999, sectio
 
             s_childs_exist = list(filter(entity_has_subfile, s_childs))
 
-            s_files = [f"{file_prefix}--{to_md_filename_part(c.display)}.md" for c in s_childs_exist]
+            s_files = [f"{file_prefix}{SEP}{to_md_filename_part(c.display)}.md" for c in s_childs_exist]
 
             for i, c in enumerate(s_childs_exist):
                 if prev is not None:
@@ -506,14 +521,14 @@ def write_file(fname, s):
     with open(fname, "wt") as f:
         f.write(s)
 
-def delete_file(fname):
-    print(f"Deleting {fname}")
-    os.remove(fname)
+#def delete_file(fname):
+#    print(f"Deleting {fname}")
+#    os.remove(fname)
 
 def parse_xmd_file(cwd, ifile):
     xmd_ifile = os.path.join(cwd,"xdoc",ifile)
     xmd_src = read_file(xmd_ifile)
-    ofile = os.path.splitext(ifile)[0]+".md"
+    ofile = make_loc(os.path.splitext(ifile)[0]+".md")
     return parse_xmd(
         xmd_src.split("\n"),
         Entity(
@@ -539,31 +554,81 @@ def generate_md_files(cwd, root, entity):
 
     for fn, display, md in file_contents:
         write_file(os.path.join(cwd,"doc",fn), md)
+
+
+def load_node(cwd, p, is_root=False):
+    print(f"Entering {p}{os.sep}")
+    file_entities = []
+    #ifiles = sorted(os.listdir(os.path.join(cwd, "xdoc", p)))
+    #... [parse_xmd_file(cwd, ifile) for ifile in ifiles]
+    P = os.path.join(cwd, "xdoc", p)
+    ifiles = sorted(os.listdir(P))
+    for f in ifiles:
+        fn, ext = os.path.splitext(f)
         
+        if os.path.isdir(os.path.join(P, f)): # load as directory
+            print(f"Directory {f}")
+            file_entities.append(load_node(cwd, os.path.join(p, f)))
+        elif os.path.exists(os.path.join(P, fn)):
+            print(f"Ignore {f}")
+            pass # already handled in previous case
+        else:
+            print(f"File {f}")
+            file_entities.append(parse_xmd_file(cwd, os.path.join(p, f)))
+            
+
+    if p == "": # root
+        root = Entity(
+            type = "table",
+            category = "",
+            brief = "",
+            display = "Table",
+            sections = {},
+            childs = [], 
+            location = "table.md",
+            src_location = None,
+            prev = None,
+            next = None
+        )
+    elif os.path.exists(os.path.join(cwd, "xdoc", p+".xmd")):
+        root = parse_xmd_file(cwd, p+".xmd")
+    else:
+        root = Entity(
+            type = "directory",
+            category = "",
+            brief = "",
+            display = p,
+            sections = {},
+            childs = [], 
+            location = make_loc(p+".md"),
+            src_location = (p, 1),
+            prev = None,
+            next = None
+        )
+
+    root.childs += file_entities
+
+    #print(root)
+
+    return root
+    #return file_entities[0] if file_entities else root
+
 
 def process_doc(cwd):
     table_ofile = os.path.join(cwd,"doc","table.md")
     ifiles = sorted(os.listdir(os.path.join(cwd, "xdoc")))
-    ofiles = [os.path.splitext(f)[0]+".md" for f in ifiles]
 
-    if os.path.isdir(os.path.join(cwd, "doc")):
-        for f in os.listdir(os.path.join(cwd, "doc")):
-            delete_file(os.path.join(cwd, "doc", f))
+    print(f"Cleaning doc{os.sep} directory")
+    try:
+        shutil.rmtree(os.path.join(cwd, "doc"))
+    except FileNotFoundError: pass
+    #if os.path.isdir(os.path.join(cwd, "doc")):
+    #    for f in os.listdir(os.path.join(cwd, "doc")):
+    #        delete_file(os.path.join(cwd, "doc", f))
 
-    file_entities = [parse_xmd_file(cwd, ifile) for ifile in ifiles]
+    #file_entities = [parse_xmd_file(cwd, ifile) for ifile in ifiles]
 
-    root = Entity(
-        type = "table",
-        category = "",
-        brief = "",
-        display = "Table",
-        sections = {},
-        childs = file_entities, 
-        location = "table.md",
-        src_location = None,
-        prev = None,
-        next = None
-    )
+    root = load_node(cwd, "", is_root=True)
     realize_filestructure(root, "table.md")
     generate_md_files(cwd, None, root)
 
