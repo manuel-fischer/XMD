@@ -2,7 +2,7 @@
 ***
 
 # `SPECIAL_SECTIONS`
-<small>*Constant* - **structure**</small>  
+<small>*Constant* &nbsp; - &nbsp; **structure** &nbsp; - &nbsp; ["xmd.py"](../xmd.py)</small>  
 
 The names and their section heading of special sections as a dictionary.
 Special sections: synopsis, description, return, example.

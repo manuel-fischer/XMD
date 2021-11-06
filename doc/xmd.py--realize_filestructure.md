@@ -1,11 +1,11 @@
-[&#8592; `entity_has_subfile`](xmd.py--entity_has_subfile.md)&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;[&#8593; `xmd.py`](xmd.py.md)&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;||&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<small>[\* xdoc](../xdoc/xmd.py.xmd#L237)</small>
+[&#8592; `entity_has_subfile`](xmd.py--entity_has_subfile.md)&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;[&#8593; `xmd.py`](xmd.py.md)&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;||&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<small>[\* xdoc](../xdoc/xmd.py.xmd#L240)</small>
 ***
 
 # `realize_filestructure`
-<small>*Function* - **structure**</small>  
+<small>*Function* &nbsp; - &nbsp; **structure** &nbsp; - &nbsp; ["xmd.py"](../xmd.py)</small>  
 **Synopsis**
 
-```cpp
+```python
 realize_filestructure(xmd_entity : Entity, filename : str, depth=999, section_depth=1)
 ```
 

@@ -1,4 +1,5 @@
 @syn* ```python3 xmd.py [<cwd>]```
+@locate xmd.py
 
 @todo
 	* `@syn` command should strip empty lines at the beginning and end
@@ -42,7 +43,9 @@
 		@todo
 			Implement sections, when the entity is not the root element of
 			a markdown file, currently its `None` in this case.
-	@attr src_location The input location: `("<filename.xmd>", <line>)`
+	@attr xmd_location The xmd input location: `("<filename.xmd>", <line>)`
+	@attr src_location The location in the source code: `("<filename.xmd>", <line>)`
+	@attr config Set of special flags 
 	@attr prev A weakpointer referring to the previous entity or None. Set by `realize_filestructure` 
 	@attr prev A weakpointer referring to the next entity or None. Set by `realize_filestructure`
 
@@ -59,15 +62,16 @@
 
 @const[structure] ENTITY_WORDS
 	@brief A dictionary containing all entity types, their section title and their signature behavior.
-@const[structure] SECTION_ORDER
-	@brief A array containing all entity types and section names.
-	
+
 @const[structure] SPECIAL_SECTIONS
 	@briefx The names and their section heading of special sections as a dictionary.
 	Special sections: synopsis, description, return, example.
 			
 	The synopsis and description sections appear at the top.
 	The return section appears where retval appears.
+
+@const[structure] SECTION_ORDER
+	@brief A array containing all entity types and section names.
 
 @const[commands] COMMANDS
 	@briefx A dictionary mapping from command names to command functions
@@ -270,13 +274,6 @@
 	@return None.
 	@sidefx Writes to the file and generates the directory containing the file, if it does not exist.
 	
-@fn[file management] delete_file(fname):
-	@briefx Delete a (text) file.
-	The filename is echoed to `stdout`.
-	@param fname The path of the text file.
-	@return None.
-	@sidefx Deletes the file.
-	
 @fn parse_xmd_file(cwd, ifile)
 	@briefx Parse the `.xmd` file named by `ifile`.
 	@param cwd The directory in which there is a file named `ifile`.
@@ -293,10 +290,18 @@
 	@param entity The entity to generate the markdown files for.
 	@return None.
 	@sidefx Writes to all `md` files that are generated from `entity`.
-	
+
+@fn load_node(cwd, p, is_root=False)
+	@briefx Generate an entity for the directory `p`
+	If there is an xmd-file with the same name as `p`, the file is used for the root `Entity`.
+	The files in the directory are inserted as additional childs
+	@param cwd The current working directory, it might be the github repository.
+	@param p The directory, for which the `Entity` should be generated
+	@param is_root Set to true for the root folder `doc/`
+	@return The root `Entity`
+
 @fn process_doc(cwd)
 	@briefx Create the markdown documentation in `doc/` from the `xmd` files in `xdoc/`.
 	@param cwd The current working directory, it might be the github repository.
 	@return None.
 	@sidefx Deletes files that existed in the `doc/` directory and writes the new contents of `md` files. If the `doc/` dir does not exist, the directory is created.
-	

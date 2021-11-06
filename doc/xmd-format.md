@@ -25,6 +25,8 @@ A double `@@` is self referring to the current layer and allows to override the 
 **`brief`** &#8213; The brief description of an entity, that is shown in the overview of the parent entity  
 **`briefx`** &#8213; Like `@brief` but also adds the text to the description of the entity.  
 **`disp`** &#8213; Sets the display name of the entity  
+**[`config`](xmd-format--config.md)** &#8213; Set special flags  
+**`locate`** &#8213; Set the (header) file location  
 **`default`** &#8213; Specifies the default value of the entity  
 **[`todo`](xmd-format--todo.md)** &#8213; TODO-Tasks  
 **[`see`](xmd-format--see.md)** &#8213; See also  
@@ -35,6 +37,7 @@ A double `@@` is self referring to the current layer and allows to override the 
 <small>**entities**</small>  
 **[`topic`](xmd-format--topic.md)** &#8213; Topic  
 **`file`** &#8213; File  
+**`directory`** &#8213; Directory  
 **`module`** &#8213; Module  
 **`namespace`** &#8213; Namespace  
 **`fn`** &#8213; Function or method  

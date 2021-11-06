@@ -1,11 +1,11 @@
-[&#8592; `command`](xmd.py--command.md)&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;[&#8593; `xmd.py`](xmd.py.md)&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;[&#8594; `write_file`](xmd.py--write_file.md)&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;||&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<small>[\* xdoc](../xdoc/xmd.py.xmd#L259)</small>
+[&#8592; `command`](xmd.py--command.md)&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;[&#8593; `xmd.py`](xmd.py.md)&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;[&#8594; `write_file`](xmd.py--write_file.md)&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;||&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<small>[\* xdoc](../xdoc/xmd.py.xmd#L262)</small>
 ***
 
 # `read_file`
-<small>*Function* - **file management**</small>  
+<small>*Function* &nbsp; - &nbsp; **file management** &nbsp; - &nbsp; ["xmd.py"](../xmd.py)</small>  
 **Synopsis**
 
-```cpp
+```python
 read_file(fname)
 ```
 

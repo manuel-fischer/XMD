@@ -1,8 +1,8 @@
-[&#8592; `Entity`](xmd.py--entity.md)&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;[&#8593; `xmd.py`](xmd.py.md)&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;[&#8594; `parse_xmd_file`](xmd.py--parse_xmd_file.md)&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;||&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<small>[\* xdoc](../xdoc/xmd.py.xmd#L50)</small>
+[&#8592; `Entity`](xmd.py--entity.md)&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;[&#8593; `xmd.py`](xmd.py.md)&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;[&#8594; `parse_xmd_file`](xmd.py--parse_xmd_file.md)&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;||&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<small>[\* xdoc](../xdoc/xmd.py.xmd#L52)</small>
 ***
 
 # `EntityType`
-<small>*Class* - **structure**</small>  
+<small>*Class* &nbsp; - &nbsp; **structure** &nbsp; - &nbsp; ["xmd.py"](../xmd.py)</small>  
 
 The behavior of a source code entity.
 

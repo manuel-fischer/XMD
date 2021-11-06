@@ -2,7 +2,7 @@
 ***
 
 # `topic`
-<small>*Tag* - **entities**</small>  
+<small>*Tag* &nbsp; - &nbsp; **entities**</small>  
 
 Topics should be used for comments or documentation, that consists of linear text.
 

@@ -1,11 +1,11 @@
-[&#8592; `pack_code`](xmd.py--pack_code.md)&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;[&#8593; `xmd.py`](xmd.py.md)&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;[&#8594; `generate_browse_link`](xmd.py--generate_browse_link.md)&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;||&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<small>[\* xdoc](../xdoc/xmd.py.xmd#L143)</small>
+[&#8592; `pack_code`](xmd.py--pack_code.md)&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;[&#8593; `xmd.py`](xmd.py.md)&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;[&#8594; `generate_browse_link`](xmd.py--generate_browse_link.md)&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;||&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<small>[\* xdoc](../xdoc/xmd.py.xmd#L146)</small>
 ***
 
 # `correct_grammar`
-<small>*Function* - **output**</small>  
+<small>*Function* &nbsp; - &nbsp; **output** &nbsp; - &nbsp; ["xmd.py"](../xmd.py)</small>  
 **Synopsis**
 
-```cpp
+```python
 correct_grammar(string, amount)
 ```
 

@@ -2,11 +2,10 @@
 ***
 
 # `xmd.py`
-<small>*File*</small>  
+<small>*File* &nbsp; - &nbsp; ["xmd.py"](../xmd.py)</small>  
 **Synopsis**
 
 ```python3 xmd.py [<cwd>]```
-
 
 ## Option
 **[`<cwd>`](xmd.py--cwd.md)** &#8213; The current working directory, it might be the github repository.  
@@ -33,8 +32,8 @@
 **`INDENT_WIDTH`** &#8213; The expected indent (width in spaces) of the text inside an entity.  
 <small>**structure**</small>  
 **`ENTITY_WORDS`** &#8213; A dictionary containing all entity types, their section title and their signature behavior.  
-**`SECTION_ORDER`** &#8213; A array containing all entity types and section names.  
 **[`SPECIAL_SECTIONS`](xmd.py--special_sections.md)** &#8213; The names and their section heading of special sections as a dictionary.  
+**`SECTION_ORDER`** &#8213; A array containing all entity types and section names.  
 ## Type
 <small>**implementation details**</small>  
 **`wref`** &#8213; Alias for weakref.ref  
@@ -48,13 +47,13 @@
 **[`parse_xmd_file`](xmd.py--parse_xmd_file.md)** &#8213; Parse the `.xmd` file named by `ifile`.  
 **[`generate_md_files`](xmd.py--generate_md_files.md)** &#8213; Generate and write out  
 **[`generate_md_files`](xmd.py--generate_md_files.md)** &#8213; Generate and write out all the files corresponding to an `Entity` and its subentities.  
+**[`load_node`](xmd.py--load_node.md)** &#8213; Generate an entity for the directory `p`  
 **[`process_doc`](xmd.py--process_doc.md)** &#8213; Create the markdown documentation in `doc/` from the `xmd` files in `xdoc/`.  
 <small>**commands**</small>  
 **[`command`](xmd.py--command.md)** &#8213; Decorator, that registers a command in `COMMANDS`.  
 <small>**file management**</small>  
 **[`read_file`](xmd.py--read_file.md)** &#8213; Read the contents of a text file.  
 **[`write_file`](xmd.py--write_file.md)** &#8213; Write the contents of a string to a text file.  
-**[`delete_file`](xmd.py--delete_file.md)** &#8213; Delete a (text) file.  
 <small>**implementation details**</small>  
 **[`deref`](xmd.py--deref.md)** &#8213; Dereferences a weak reference  
 <small>**markdown**</small>  

@@ -1,11 +1,11 @@
-[&#8592; `generate_browse`](xmd.py--generate_browse.md)&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;[&#8593; `xmd.py`](xmd.py.md)&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;[&#8594; `split_tokens`](xmd.py--split_tokens.md)&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;||&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<small>[\* xdoc](../xdoc/xmd.py.xmd#L250)</small>
+[&#8592; `generate_browse`](xmd.py--generate_browse.md)&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;[&#8593; `xmd.py`](xmd.py.md)&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;[&#8594; `split_tokens`](xmd.py--split_tokens.md)&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;||&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<small>[\* xdoc](../xdoc/xmd.py.xmd#L253)</small>
 ***
 
 # `xmd2md`
-<small>*Function* - **output**</small>  
+<small>*Function* &nbsp; - &nbsp; **output** &nbsp; - &nbsp; ["xmd.py"](../xmd.py)</small>  
 **Synopsis**
 
-```cpp
+```python
 xmd2md(xmd_entity, parent_file, depth=999, section_depth=1)
 ```
 
